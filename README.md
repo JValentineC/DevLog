@@ -102,6 +102,16 @@ Or in VS Code, right-click two files and choose **Compare Selected**.
 | Testing | Vitest, React Testing Library |
 | CI | GitHub Actions |
 
+## About the Author
+
+My name is **Jonathan Ramirez**, a proud graduate of [i.c.Stars](https://www.icstars.org/) Cycle 53. i.c.Stars is a nonprofit organization that has been transforming lives through technology for over 25 years — training young adults from underserved communities and launching them into tech careers.
+
+After graduating, I went on to work as a **Program Manager at United Airlines**. When my contract ended, I dove into self-learning and self-development — sharpening my skills in full-stack development, leadership, and mentoring. Today I hold a position at i.c.Stars as a **Tech Fellow**, where I help interns reach their potential and support the program team in any way I can.
+
+This curriculum is a direct result of that journey. Every step in this repo was built with i.c.Stars interns in mind — people who are hungry to learn, willing to put in the work, and deserve clear, honest instruction.
+
+If you'd like to learn more about i.c.Stars — or know someone whose life could be changed by joining — visit **[https://www.icstars.org/](https://www.icstars.org/)**.
+
 ## License
 
 This project is for educational purposes.
