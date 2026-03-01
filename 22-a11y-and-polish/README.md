@@ -1,8 +1,8 @@
-# Step 22 — Accessibility and Polish
+# Step 22 - Accessibility and Polish
 
 ## Goal
 
-Make the DevLog app more accessible and polished. Add keyboard navigation support, screen reader improvements, better color contrast, focus management, and a proper 404 page. This is the final step — we'll also look back at what we've built.
+Make the DevLog app more accessible and polished. Add keyboard navigation support, screen reader improvements, better color contrast, focus management, and a proper 404 page. This is the final step - we'll also look back at what we've built.
 
 ## What You'll Practice
 
@@ -35,12 +35,12 @@ Make the DevLog app more accessible and polished. Add keyboard navigation suppor
 | `src/components/EntryForm.tsx` | Focus first invalid field on validation failure; added `noValidate` to `<form>` (we handle validation ourselves) |
 | `src/components/LoginPage.tsx` | Focus the error message on failed login; `<main>` gets `id="main-content"` |
 | `src/components/Toast.tsx` | Split toasts by type: success uses `aria-live="polite"`, errors use `aria-live="assertive"` |
-| `src/components/SkipLink.tsx` | **New** — skip-to-content link |
-| `src/components/ScrollToTop.tsx` | **New** — scrolls to top on route change |
-| `src/components/NotFound.tsx` | **New** — 404 page with link home |
-| `src/components/__tests__/SkipLink.test.tsx` | **New** — tests skip link renders |
-| `src/components/__tests__/NotFound.test.tsx` | **New** — tests 404 heading, link, and focusable main |
-| `src/components/__tests__/EntryForm.test.tsx` | Updated — verifies focus moves to first invalid field |
+| `src/components/SkipLink.tsx` | **New** - skip-to-content link |
+| `src/components/ScrollToTop.tsx` | **New** - scrolls to top on route change |
+| `src/components/NotFound.tsx` | **New** - 404 page with link home |
+| `src/components/__tests__/SkipLink.test.tsx` | **New** - tests skip link renders |
+| `src/components/__tests__/NotFound.test.tsx` | **New** - tests 404 heading, link, and focusable main |
+| `src/components/__tests__/EntryForm.test.tsx` | Updated - verifies focus moves to first invalid field |
 | `package.json` | Name updated to `devlog-22` |
 | `.github/workflows/ci.yml` | Updated working directory to `22-a11y-and-polish` |
 
@@ -115,7 +115,7 @@ By default, browsers show a focus ring on clicked elements, which annoys mouse u
 }
 ```
 
-This gives keyboard users a clear, consistent focus indicator on every interactive element — links, buttons, inputs, selects.
+This gives keyboard users a clear, consistent focus indicator on every interactive element - links, buttons, inputs, selects.
 
 ### 3. Use NavLink for aria-current
 
@@ -133,7 +133,7 @@ We also added `aria-label="Main navigation"` to the `<nav>` so screen readers ca
 
 ### 4. Focus the first invalid field on form errors
 
-When a user submits an invalid form, the error messages appear — but keyboard/screen reader users may not notice them. Moving focus to the first invalid field makes the error immediately obvious:
+When a user submits an invalid form, the error messages appear - but keyboard/screen reader users may not notice them. Moving focus to the first invalid field makes the error immediately obvious:
 
 ```tsx
 const titleRef = useRef<HTMLInputElement>(null)
@@ -161,8 +161,8 @@ The field has `aria-invalid="true"` and `aria-describedby` pointing to the error
 
 Screen readers have two urgency levels for dynamic content:
 
-- **`aria-live="polite"`** — waits until the user is idle, then announces. Good for success messages.
-- **`aria-live="assertive"`** — interrupts immediately. Good for errors.
+- **`aria-live="polite"`** - waits until the user is idle, then announces. Good for success messages.
+- **`aria-live="assertive"`** - interrupts immediately. Good for errors.
 
 ```tsx
 <div role="status" aria-live="polite">
@@ -177,7 +177,7 @@ This ensures error toasts are announced immediately, while success toasts don't 
 
 ### 6. Focus login error messages
 
-When login fails, the error message appears — but screen reader users won't hear it unless focus moves to it:
+When login fails, the error message appears - but screen reader users won't hear it unless focus moves to it:
 
 ```tsx
 const errorRef = useRef<HTMLParagraphElement>(null)
@@ -218,7 +218,7 @@ WCAG AA requires a contrast ratio of at least **4.5:1** for normal text. We adde
 
 ### 9. Scroll to top on route change
 
-SPAs don't scroll to the top when navigating — the browser only does that for full page loads. `ScrollToTop` fixes this:
+SPAs don't scroll to the top when navigating - the browser only does that for full page loads. `ScrollToTop` fixes this:
 
 ```tsx
 function ScrollToTop() {
@@ -232,7 +232,7 @@ function ScrollToTop() {
 }
 ```
 
-This is a "renderless" component — it hooks into the router but doesn't produce any DOM output.
+This is a "renderless" component - it hooks into the router but doesn't produce any DOM output.
 
 ### 10. Add a 404 page
 
@@ -249,21 +249,21 @@ The `*` path matches anything that wasn't matched by previous routes.
 Search engines and social previews use `<meta name="description">`:
 
 ```html
-<meta name="description" content="DevLog — a developer journal built with the SERN stack." />
+<meta name="description" content="DevLog - a developer journal built with the SERN stack." />
 ```
 
 ## Helpful Hints
 
-- **Tab through your app** — press Tab repeatedly from the top of the page. Can you reach every interactive element? Can you see where focus is?
-- **Screen reader testing** — on Windows, use Narrator (Win+Ctrl+Enter) or NVDA (free). On Mac, use VoiceOver (Cmd+F5).
-- **Color contrast checker** — use browser DevTools (Chrome → Inspect → Color picker shows contrast ratio) or [WebAIM Contrast Checker](https://webaim.org/resources/contrastchecker/).
+- **Tab through your app** - press Tab repeatedly from the top of the page. Can you reach every interactive element? Can you see where focus is?
+- **Screen reader testing** - on Windows, use Narrator (Win+Ctrl+Enter) or NVDA (free). On Mac, use VoiceOver (Cmd+F5).
+- **Color contrast checker** - use browser DevTools (Chrome → Inspect → Color picker shows contrast ratio) or [WebAIM Contrast Checker](https://webaim.org/resources/contrastchecker/).
 - **`tabIndex={-1}`** means "focusable by JavaScript, but not in the Tab order." Use it on containers you want to focus programmatically (like `<main>`).
-- **`aria-current="page"`** is set automatically by `NavLink` — you don't need to add it yourself.
-- **Don't remove focus outlines** — if the default outline looks bad, replace it with `:focus-visible` styles. Never set `outline: none` without a replacement.
+- **`aria-current="page"`** is set automatically by `NavLink` - you don't need to add it yourself.
+- **Don't remove focus outlines** - if the default outline looks bad, replace it with `:focus-visible` styles. Never set `outline: none` without a replacement.
 
 ## ✅ Do
 
-- Test with keyboard only (no mouse) — every feature should be usable
+- Test with keyboard only (no mouse) - every feature should be usable
 - Use semantic HTML elements (`<main>`, `<nav>`, `<header>`, `<footer>`, `<article>`)
 - Label all form inputs with `<label htmlFor="...">`
 - Use `aria-invalid` + `aria-describedby` for form error messages
@@ -277,21 +277,21 @@ Search engines and social previews use `<meta name="description">`:
 - Don't rely on color alone to convey meaning (add text or icons too)
 - Don't use `aria-label` when visible text already labels the element
 - Don't add `role` attributes to elements that already have the correct implicit role (`<button>` already has `role="button"`)
-- Don't forget `alt` text on images — if the image is decorative, use `alt=""`
-- Don't use `tabIndex` values greater than 0 — they break the natural tab order
+- Don't forget `alt` text on images - if the image is decorative, use `alt=""`
+- Don't use `tabIndex` values greater than 0 - they break the natural tab order
 
 ## Check Your Work
 
 1. `npm test` → all 15 tests pass (7 test files)
 2. `npm run build` → no TypeScript errors
-3. **Keyboard test**: Press Tab from the top of each page — you should see a clear blue focus ring on every link, button, and form input
-4. **Skip link**: Press Tab once on any page — the "Skip to main content" link appears at the top
-5. **404 page**: Navigate to `/#/nonexistent` — you should see the "Page Not Found" page
-6. **Form focus**: Submit an empty entry form — focus should move to the Title field
+3. **Keyboard test**: Press Tab from the top of each page - you should see a clear blue focus ring on every link, button, and form input
+4. **Skip link**: Press Tab once on any page - the "Skip to main content" link appears at the top
+5. **404 page**: Navigate to `/#/nonexistent` - you should see the "Page Not Found" page
+6. **Form focus**: Submit an empty entry form - focus should move to the Title field
 
 ## Retrospective
 
-Congratulations — you've built a complete full-stack application! Here's what the DevLog project covers across all 22 steps:
+Congratulations - you've built a complete full-stack application! Here's what the DevLog project covers across all 22 steps:
 
 | Area | What You Learned |
 |---|---|

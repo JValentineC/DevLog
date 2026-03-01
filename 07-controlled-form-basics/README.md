@@ -1,10 +1,10 @@
-# Step 07 — Controlled Form Basics
+# Step 07 - Controlled Form Basics
 
 ## Goal
 
 Add a **New Entry** page with a form that uses React **controlled inputs** for
 `title` and `content`. Submitting the form logs the values to the console and
-resets the fields. No entries are saved anywhere yet — the focus is purely on
+resets the fields. No entries are saved anywhere yet - the focus is purely on
 learning `useState` with form elements.
 
 ## What You'll Practice
@@ -102,8 +102,8 @@ npm run build    # should complete with 0 errors
 npm run dev      # open browser → click "New Entry"
 ```
 
-- Type in both fields — the values should appear as you type
-- Click **Save Entry** — check the browser console for the logged object
+- Type in both fields - the values should appear as you type
+- Click **Save Entry** - check the browser console for the logged object
 - Both fields should clear after submission
 
 ## File Tree
@@ -155,7 +155,7 @@ The input always reflects the state, and every keystroke updates the state.
 <details>
 <summary>Why call `event.preventDefault()`?</summary>
 
-Without it, the browser performs a traditional form submission — a full page
+Without it, the browser performs a traditional form submission - a full page
 reload with query parameters in the URL. In a single-page React app, you handle
 submission in JavaScript instead.
 
@@ -210,7 +210,7 @@ function handleSubmit(event: FormEvent<HTMLFormElement>) {
 ## Stretch Goals
 
 - Add a third field: a `<select>` dropdown for "mood" (e.g., Happy, Frustrated,
-  Curious) — also controlled with `useState`
+  Curious) - also controlled with `useState`
 - Show a live preview below the form that displays what the entry will look like
   (render the title and content as you type)
 - Disable the **Save Entry** button when both fields are empty (sneak peek at

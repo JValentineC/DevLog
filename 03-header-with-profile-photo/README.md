@@ -1,8 +1,8 @@
-# Step 03 — Header with Profile Photo
+# Step 03 - Header with Profile Photo
 
 ## Goal
 
-Add a **profile image** inside the `<header>`, displayed before your name. The image lives in the `public/` folder and is referenced with an absolute path — still **no `className`** attributes.
+Add a **profile image** inside the `<header>`, displayed before your name. The image lives in the `public/` folder and is referenced with an absolute path - still **no `className`** attributes.
 
 ## What You'll Practice
 
@@ -13,7 +13,7 @@ Add a **profile image** inside the `<header>`, displayed before your name. The i
 
 ## Prerequisites
 
-- Step 02 completed — clean semantic Home + About page
+- Step 02 completed - clean semantic Home + About page
 
 ## Steps
 
@@ -35,7 +35,7 @@ public/
 └── profile.jpg   ← your photo goes here
 ```
 
-> **Tip:** Use a small, square-ish image. A 200×200 to 400×400 pixel photo works well. You can resize with any image editor or an online tool.
+> **Tip:** Use a small, square-ish image. A 200�-200 to 400�-400 pixel photo works well. You can resize with any image editor or an online tool.
 
 ### 3. Add the `<img>` to the header in `App.tsx`
 
@@ -84,7 +84,7 @@ function App() {
             I'm currently working through the SERN stack: SQL Server, Express, React, and Node.
           </p>
           <p>
-            This DevLog tracks my progress step by step — from scaffolding a Vite project
+            This DevLog tracks my progress step by step - from scaffolding a Vite project
             all the way to deploying on GitHub Pages.
           </p>
         </section>
@@ -110,30 +110,30 @@ Open the browser. You should see your profile photo in the header, followed by "
 
 ## Helpful Hints
 
-- **`public/` folder** — Any file placed here is served from the site root at runtime. So `public/profile.jpg` becomes `/profile.jpg` in the browser. Vite does **not** process these files (no hashing, no optimization) — they're copied as-is to the build output.
-- **`src/assets/` vs `public/`** — Files in `src/assets/` get imported as modules and get hashed filenames in production (good for cache-busting). Files in `public/` keep their original name. For early steps, `public/` is simpler because you don't need `import` syntax.
-- **`width` and `height` attributes** — Always include these on `<img>` tags. They tell the browser how much space to reserve *before* the image loads, preventing layout shift (the page jumping around as images pop in).
-- **`alt` text** — Screen readers read this aloud for visually impaired users. Write something descriptive: "Profile photo of Jane Doe" is better than "photo" or "image". If an image is purely decorative, use `alt=""` (empty string) — but a profile photo is *not* decorative.
-- **Why no `className` yet?** — The photo will stack vertically above the heading (default block layout). That's fine! We'll add layout CSS in a future step to place the photo side-by-side with the name.
+- **`public/` folder** - Any file placed here is served from the site root at runtime. So `public/profile.jpg` becomes `/profile.jpg` in the browser. Vite does **not** process these files (no hashing, no optimization) - they're copied as-is to the build output.
+- **`src/assets/` vs `public/`** - Files in `src/assets/` get imported as modules and get hashed filenames in production (good for cache-busting). Files in `public/` keep their original name. For early steps, `public/` is simpler because you don't need `import` syntax.
+- **`width` and `height` attributes** - Always include these on `<img>` tags. They tell the browser how much space to reserve *before* the image loads, preventing layout shift (the page jumping around as images pop in).
+- **`alt` text** - Screen readers read this aloud for visually impaired users. Write something descriptive: "Profile photo of Jane Doe" is better than "photo" or "image". If an image is purely decorative, use `alt=""` (empty string) - but a profile photo is *not* decorative.
+- **Why no `className` yet?** - The photo will stack vertically above the heading (default block layout). That's fine! We'll add layout CSS in a future step to place the photo side-by-side with the name.
 
 ## Do ✅ / Don't ❌
 
 | ✅ Do | ❌ Don't |
 |---|---|
-| Place your image in `public/` and reference it as `/profile.jpg`. | Use `import` syntax for the image — that's `src/assets/` style, not needed here. |
-| Include `width`, `height`, and a descriptive `alt` on the `<img>`. | Skip `alt` text — that's an accessibility failure. |
+| Place your image in `public/` and reference it as `/profile.jpg`. | Use `import` syntax for the image - that's `src/assets/` style, not needed here. |
+| Include `width`, `height`, and a descriptive `alt` on the `<img>`. | Skip `alt` text - that's an accessibility failure. |
 | Use a reasonably sized photo (under ~200 KB). | Commit a 5 MB uncompressed photo. |
-| Keep the image above `<h1>` inside `<header>`. | Add `className` or inline `style` attributes — styling comes later. |
-| Commit: `feat(step-03): add profile photo to header`. | Worry about side-by-side layout — that's a future step. |
+| Keep the image above `<h1>` inside `<header>`. | Add `className` or inline `style` attributes - styling comes later. |
+| Commit: `feat(step-03): add profile photo to header`. | Worry about side-by-side layout - that's a future step. |
 
 ## Check Your Work
 
 - [ ] `npm run dev` starts without errors.
 - [ ] A **profile photo** appears in the header area of the page.
-- [ ] The image is **96×96 pixels** (or whatever size you chose).
+- [ ] The image is **96�-96 pixels** (or whatever size you chose).
 - [ ] Inspecting the `<img>` in DevTools shows a meaningful `alt` attribute.
 - [ ] The `<img>` tag has both `width` and `height` attributes.
-- [ ] The file `public/profile.jpg` exists (check with DevTools Network tab — it should load as `/profile.jpg`).
+- [ ] The file `public/profile.jpg` exists (check with DevTools Network tab - it should load as `/profile.jpg`).
 - [ ] No `className` attributes anywhere in `App.tsx`.
 
 ## Stretch

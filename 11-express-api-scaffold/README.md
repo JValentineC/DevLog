@@ -1,9 +1,9 @@
-# Step 11 — Express API Scaffold
+# Step 11 - Express API Scaffold
 
 ## Goal
 
 Create a standalone **Express + TypeScript** server with a single `/api/health`
-endpoint. This is the first back-end step — no database yet. You will learn how
+endpoint. This is the first back-end step - no database yet. You will learn how
 to set up environment variables, CORS, and a startup guard so the server fails
 fast when configuration is missing.
 
@@ -16,7 +16,7 @@ fast when configuration is missing.
 | Environment variables | Read config from `.env` via `dotenv` |
 | Startup guards | Exit with a helpful message when a required var is missing |
 | CORS configuration | Allow only a specific origin read from `.env` |
-| Health-check pattern | Expose `GET /api/health` — useful for monitoring and smoke tests |
+| Health-check pattern | Expose `GET /api/health` - useful for monitoring and smoke tests |
 
 ## Prerequisites
 
@@ -93,7 +93,7 @@ Then copy it to `.env` (which is **git-ignored**):
 cp .env.example .env
 ```
 
-> **Important:** Never commit `.env` — it may contain secrets in later steps.
+> **Important:** Never commit `.env` - it may contain secrets in later steps.
 > Ensure your `.gitignore` includes `.env`.
 
 ### 6. Create `.gitignore`
@@ -104,7 +104,7 @@ dist
 .env
 ```
 
-### 7. Write the server — `src/index.ts`
+### 7. Write the server - `src/index.ts`
 
 ```ts
 import 'dotenv/config'
@@ -143,7 +143,7 @@ app.listen(PORT, () => {
 ### 8. Build & run
 
 ```bash
-npm run build          # compiles to dist/ — should produce 0 errors
+npm run build          # compiles to dist/ - should produce 0 errors
 npm run dev            # starts with tsx in watch mode
 ```
 
@@ -182,7 +182,7 @@ flag to understand it.
 <summary>Why <code>tsx watch</code> instead of <code>node</code>?</summary>
 
 `tsx` runs TypeScript directly without a separate compile step. The `watch` flag
-restarts the server automatically whenever you save a file — great for
+restarts the server automatically whenever you save a file - great for
 development. For production you would compile with `tsc` and run with
 `node dist/index.js`.
 

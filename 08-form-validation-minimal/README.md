@@ -1,9 +1,9 @@
-# Step 08 — Form Validation (Minimal)
+# Step 08 - Form Validation (Minimal)
 
 ## Goal
 
 Add **client-side validation** to the New Entry form. Both title and content are
-required — show inline error messages after the first submit attempt and
+required - show inline error messages after the first submit attempt and
 **disable the Submit button** while errors exist. No external libraries; just
 `useState` and derived values.
 
@@ -54,7 +54,7 @@ const contentError = content.trim() === '' ? 'Content is required.' : ''
 const isValid = titleError === '' && contentError === ''
 ```
 
-These variables recalculate automatically whenever `title` or `content` change —
+These variables recalculate automatically whenever `title` or `content` change -
 no extra `useEffect` needed.
 
 ### 4. Update the submit handler
@@ -116,10 +116,10 @@ npm run build   # 0 errors
 npm run dev     # open browser → New Entry page
 ```
 
-- Click **Save Entry** with empty fields — errors appear, button disables
-- Type a title — title error disappears, button stays disabled (content still empty)
-- Type content — content error disappears, button re-enables
-- Submit — console logs values, fields clear, errors hidden
+- Click **Save Entry** with empty fields - errors appear, button disables
+- Type a title - title error disappears, button stays disabled (content still empty)
+- Type content - content error disappears, button re-enables
+- Submit - console logs values, fields clear, errors hidden
 
 ## File Tree
 
@@ -154,7 +154,7 @@ npm run dev     # open browser → New Entry page
 <details>
 <summary>Why derive errors instead of storing them in state?</summary>
 
-Storing errors in state creates a "sync problem" — you'd have to update the
+Storing errors in state creates a "sync problem" - you'd have to update the
 error state every time `title` or `content` changes. Derived values are
 calculated from the current state on every render, so they're always in sync
 automatically. This is a core React pattern: **derive what you can, store only
@@ -176,7 +176,7 @@ clicks **Save Entry**, giving them a chance to fill out the form first.
 
 It tells assistive technology that the input's current value is invalid. Screen
 readers announce this to the user. Set it to `true` when there's an error, and
-`undefined` (not `false`) when there isn't — `undefined` removes the attribute
+`undefined` (not `false`) when there isn't - `undefined` removes the attribute
 from the DOM entirely.
 
 </details>
@@ -186,7 +186,7 @@ from the DOM entirely.
 
 It links an input to another element (by `id`) that provides additional context.
 When the input receives focus, screen readers read the linked element's text
-aloud — in this case, the error message.
+aloud - in this case, the error message.
 
 </details>
 
@@ -197,7 +197,7 @@ aloud — in this case, the error message.
 | Derive error strings from state on every render | Store errors in a separate `useState` (unnecessary sync) |
 | Use a `submitted` flag to delay error display | Show errors immediately on first render |
 | Use `trim()` before checking for empty strings | Accept whitespace-only input as valid |
-| Add `aria-invalid` and `aria-describedby` | Rely only on visual cues — screen readers need ARIA |
+| Add `aria-invalid` and `aria-describedby` | Rely only on visual cues - screen readers need ARIA |
 | Disable the button only after a failed submit | Disable the button on initial load (user can't discover validation) |
 | Use `role="alert"` on error messages | Hide errors from assistive technology |
 
@@ -215,7 +215,7 @@ aloud — in this case, the error message.
 ## Stretch Goals
 
 - Add a minimum-length check: title must be at least 3 characters
-- Add a maximum-length check: content must be under 500 characters — show a
+- Add a maximum-length check: content must be under 500 characters - show a
   live character count below the textarea
 - Show a success message (e.g., "Entry saved!") for 2 seconds after a
   successful submit using `setTimeout`

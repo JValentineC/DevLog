@@ -1,19 +1,19 @@
-# Step 05 — Extract Simple Components
+# Step 05 - Extract Simple Components
 
 ## Goal
 
-Refactor the monolithic `App.tsx` by extracting **`<Header />`**, **`<AboutSection />`**, and **`<Footer />`** into their own files inside a `src/components/` folder. The app looks and behaves **exactly the same** as Step 04 — but the code is now organized into reusable pieces.
+Refactor the monolithic `App.tsx` by extracting **`<Header />`**, **`<AboutSection />`**, and **`<Footer />`** into their own files inside a `src/components/` folder. The app looks and behaves **exactly the same** as Step 04 - but the code is now organized into reusable pieces.
 
 ## What You'll Practice
 
 - Creating a `components/` folder and individual component files
 - Writing a component as a function that returns JSX
 - Using `export default` and `import` to wire components together
-- Understanding that extracting components doesn't change what the user sees — it improves code organization
+- Understanding that extracting components doesn't change what the user sees - it improves code organization
 
 ## Prerequisites
 
-- Step 04 completed — routing with Home and About pages
+- Step 04 completed - routing with Home and About pages
 
 ## Steps
 
@@ -160,23 +160,23 @@ The app should look and behave **identically** to Step 04. The only difference i
 - **What is a component?** A function that returns JSX. That's it. `Header()` returns the header markup, `Footer()` returns the footer markup. React renders whatever the function returns.
 - **`export default`** makes the component available to other files. **`import Header from './components/Header.tsx'`** brings it in. The name after `import` can be anything (it's a default export), but by convention we match the filename.
 - **Why extract components?**
-  - **Readability** — `<Header />` is easier to scan than 10 lines of header markup.
-  - **Reusability** — `<Footer />` is used on both the Home *and* About pages. Change it once, it updates everywhere.
-  - **Separation of concerns** — each file has one job.
+  - **Readability** - `<Header />` is easier to scan than 10 lines of header markup.
+  - **Reusability** - `<Footer />` is used on both the Home *and* About pages. Change it once, it updates everywhere.
+  - **Separation of concerns** - each file has one job.
 - **The `components/` folder** is a convention, not a requirement. React doesn't care where files live. But organizing by type (`components/`, `pages/`, etc.) helps teams find things quickly.
-- **Nothing changes visually** — this is a *refactor*. The user sees the exact same app. Refactoring means improving code structure without changing behavior.
-- **`<Footer />` appears on both pages** now via import — if you update the copyright text in `Footer.tsx`, both pages get the change automatically.
+- **Nothing changes visually** - this is a *refactor*. The user sees the exact same app. Refactoring means improving code structure without changing behavior.
+- **`<Footer />` appears on both pages** now via import - if you update the copyright text in `Footer.tsx`, both pages get the change automatically.
 
 ## Do ✅ / Don't ❌
 
 | ✅ Do | ❌ Don't |
 |---|---|
 | Create one file per component in `src/components/`. | Dump all components into a single file. |
-| Use `export default` for each component. | Forget to export — you'll get an import error. |
-| Import components at the top of `App.tsx`. | Use `require()` — that's CommonJS, not ES modules. |
-| Verify the app looks identical to Step 04 after refactoring. | Add new features or UI changes — this step is *only* about extraction. |
+| Use `export default` for each component. | Forget to export - you'll get an import error. |
+| Import components at the top of `App.tsx`. | Use `require()` - that's CommonJS, not ES modules. |
+| Verify the app looks identical to Step 04 after refactoring. | Add new features or UI changes - this step is *only* about extraction. |
 | Reuse `<Footer />` on both pages. | Copy-paste footer markup into both pages. |
-| Commit: `feat(step-05): extract Header, AboutSection, Footer components`. | Add `className` or styling — still not yet. |
+| Commit: `feat(step-05): extract Header, AboutSection, Footer components`. | Add `className` or styling - still not yet. |
 
 ## Check Your Work
 
@@ -187,7 +187,7 @@ The app should look and behave **identically** to Step 04. The only difference i
 - [ ] `src/components/Header.tsx` exists and exports the header component.
 - [ ] `src/components/AboutSection.tsx` exists and exports the about section component.
 - [ ] `src/components/Footer.tsx` exists and exports the footer component.
-- [ ] `App.tsx` imports all three components — no inline header/footer markup remains in `Home`.
+- [ ] `App.tsx` imports all three components - no inline header/footer markup remains in `Home`.
 - [ ] `<Footer />` is used on **both** the Home and About pages.
 
 ## Stretch

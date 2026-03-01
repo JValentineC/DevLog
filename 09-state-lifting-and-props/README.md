@@ -1,11 +1,11 @@
-# Step 09 — State Lifting and Props
+# Step 09 - State Lifting and Props
 
 ## Goal
 
 **Lift** the entries array out of the hardcoded data file and into React state
 inside `App`. Pass that state **down** to the Entries page as a prop, and pass
 an `onAddEntry` callback **down** to the New Entry form. When the form submits,
-the new entry actually appears on the All Entries page — the app is interactive
+the new entry actually appears on the All Entries page - the app is interactive
 for the first time.
 
 ## What You'll Practice
@@ -189,7 +189,7 @@ npm run dev     # open browser
 
 When two or more components need access to the same data, you move that data to
 their nearest common ancestor. In this step, both `EntriesPage` (reads entries)
-and `NewEntryForm` (adds entries) need the entries array — so it lives in `App`,
+and `NewEntryForm` (adds entries) need the entries array - so it lives in `App`,
 which is above both of them in the component tree.
 
 </details>
@@ -207,7 +207,7 @@ safer, especially when multiple updates could happen in quick succession.
 <details>
 <summary>Why `Date.now()` for the ID?</summary>
 
-It returns the current timestamp in milliseconds — good enough for a unique
+It returns the current timestamp in milliseconds - good enough for a unique
 client-side ID when there's no database. Later, the database will generate real
 IDs. This is a temporary solution that keeps things simple.
 
@@ -227,7 +227,7 @@ entries page without them clicking a link.
 
 If the user hasn't added any entries and the seed data is removed, the page
 would be blank. The `{entries.length === 0 && <p>No entries yet.</p>}` pattern
-is a common UX improvement — always tell the user what's happening.
+is a common UX improvement - always tell the user what's happening.
 
 </details>
 
@@ -256,7 +256,7 @@ is a common UX improvement — always tell the user what's happening.
 
 ## Stretch Goals
 
-- Remove the seed data and start with an empty array — verify the empty state
+- Remove the seed data and start with an empty array - verify the empty state
 - Add a "Clear All" button on the entries page that resets the array
 - After saving, show a brief "Entry added!" message (use `setTimeout` to auto-hide)
 - Pass `entries.length` to the Home page and display "You have X entries"

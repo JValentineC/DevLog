@@ -1,8 +1,8 @@
-# Step 23 — Tailwind CSS + daisyUI Setup
+# Step 23 - Tailwind CSS + daisyUI Setup
 
 ## Goal
 
-Install **Tailwind CSS v4** and **daisyUI v5**, configure the build pipeline, and restyle the app's **layout shell** (navbar, footer, page containers) using daisyUI component classes. By the end of this step the app has a polished, theme-aware layout while every inner component (cards, forms, pagination) still uses plain HTML — we'll style those in Step 24.
+Install **Tailwind CSS v4** and **daisyUI v5**, configure the build pipeline, and restyle the app's **layout shell** (navbar, footer, page containers) using daisyUI component classes. By the end of this step the app has a polished, theme-aware layout while every inner component (cards, forms, pagination) still uses plain HTML - we'll style those in Step 24.
 
 ## What You'll Practice
 
@@ -44,7 +44,7 @@ Replace the entire contents of `src/index.css`:
 @import "tailwindcss";
 @plugin "daisyui";
 
-/* ── Skip link (a11y — kept from step 22) ─────────── */
+/* ── Skip link (a11y - kept from step 22) ─────────── */
 .skip-link {
   @apply absolute -left-[9999px] top-0 z-[9999] px-4 py-2 bg-primary text-primary-content font-semibold no-underline;
 }
@@ -54,14 +54,14 @@ Replace the entire contents of `src/index.css`:
 }
 ```
 
-> **What happened?** The old hand-written CSS (colors, fonts, dark mode media queries, `.sr-only`) is all replaced by Tailwind's built-in utilities and daisyUI's theme system. Dark mode "just works" — daisyUI detects `prefers-color-scheme` automatically.
+> **What happened?** The old hand-written CSS (colors, fonts, dark mode media queries, `.sr-only`) is all replaced by Tailwind's built-in utilities and daisyUI's theme system. Dark mode "just works" - daisyUI detects `prefers-color-scheme` automatically.
 
 ### 4. Restyle `Header.tsx` → daisyUI **navbar + menu**
 
 Replace the plain `<header>` with daisyUI's `navbar` and `menu menu-horizontal` classes. Key changes:
 
 - `<header className="navbar bg-base-200 shadow-sm px-4">`
-- Profile image gets `className="rounded-full"` and smaller size (40×40)
+- Profile image gets `className="rounded-full"` and smaller size (40�-40)
 - Nav links go inside `<ul className="menu menu-horizontal px-1 gap-1">`
 - Log Out button becomes `btn btn-ghost btn-sm`
 
@@ -105,9 +105,9 @@ Open the app. You should see:
 
 | Topic | Hint |
 |-------|------|
-| **Tailwind v4 setup** | No `tailwind.config.js` needed — Tailwind v4 uses CSS-first configuration with `@import "tailwindcss"` and `@plugin`. |
+| **Tailwind v4 setup** | No `tailwind.config.js` needed - Tailwind v4 uses CSS-first configuration with `@import "tailwindcss"` and `@plugin`. |
 | **daisyUI themes** | daisyUI ships with `light` and `dark` themes by default. You can add more via `@plugin "daisyui" { themes: [...] }` in your CSS. |
-| **`@apply`** | Use `@apply` sparingly — it's useful for the skip-link class that must exist as a real CSS class, but prefer inline `className` in JSX. |
+| **`@apply`** | Use `@apply` sparingly - it's useful for the skip-link class that must exist as a real CSS class, but prefer inline `className` in JSX. |
 | **`container`** | Tailwind's `container` class centers content and caps `max-width` at each breakpoint. |
 | **`menu` vs `btn`** | daisyUI `menu` is for navigation link lists. `btn` is for action buttons. Don't mix them in the same element. |
 
@@ -116,17 +116,17 @@ Open the app. You should see:
 | ✅ Do | ❌ Don't |
 |-------|----------|
 | Use daisyUI semantic classes (`navbar`, `menu`, `footer`, `btn`) | Don't write raw CSS for things daisyUI already provides |
-| Keep `@apply` for skip-link and similar a11y classes | Don't use `@apply` for everything — prefer `className` in JSX |
+| Keep `@apply` for skip-link and similar a11y classes | Don't use `@apply` for everything - prefer `className` in JSX |
 | Let daisyUI handle dark mode automatically via themes | Don't write manual `@media (prefers-color-scheme)` rules |
 | Keep `aria-label`, skip-link, and focus management from step 22 | Don't remove a11y attributes when adding classes |
-| Wrap pages in `min-h-screen flex flex-col` for sticky footer | Don't set `height: 100vh` on body — it breaks on mobile |
+| Wrap pages in `min-h-screen flex flex-col` for sticky footer | Don't set `height: 100vh` on body - it breaks on mobile |
 
 ## Check Your Work
 
 - [ ] `npm run dev` starts without errors
 - [ ] Navbar shows profile photo, nav links, and auth controls
 - [ ] Footer is at the bottom of every page (even short pages)
-- [ ] Toggle OS dark mode — the theme changes automatically
+- [ ] Toggle OS dark mode - the theme changes automatically
 - [ ] Skip link still works: press **Tab** on page load → "Skip to main content" appears
 - [ ] All existing routes still work (`/`, `/entries`, `/about`, `/login`, `/entries/new`, etc.)
 

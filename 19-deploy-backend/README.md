@@ -1,8 +1,8 @@
-# Step 19 — Deploy Backend
+# Step 19 - Deploy Backend
 
 ## Goal
 
-Make the Express server **production-ready** by adding request logging, serving the Vite build as static files, handling graceful shutdown, and introducing a `start` script — everything a hosting platform needs to run your app.
+Make the Express server **production-ready** by adding request logging, serving the Vite build as static files, handling graceful shutdown, and introducing a `start` script - everything a hosting platform needs to run your app.
 
 ## What You'll Practice
 
@@ -92,7 +92,7 @@ if (IS_PROD) {
 
   app.use(express.static(clientDist))
 
-  // SPA fallback — let React Router handle client-side routes
+  // SPA fallback - let React Router handle client-side routes
   app.get('*', (_req, res) => {
     res.sendFile(path.join(clientDist, 'index.html'))
   })
@@ -146,8 +146,8 @@ Two endpoints are available for monitoring:
 
 | Endpoint | Purpose |
 |---|---|
-| `GET /api/health` | Always returns `{ status: "ok" }` — proves the process is alive |
-| `GET /api/health/ready` | Pings the database — returns `{ status: "ready" }` or `503` if the DB is down |
+| `GET /api/health` | Always returns `{ status: "ok" }` - proves the process is alive |
+| `GET /api/health/ready` | Pings the database - returns `{ status: "ready" }` or `503` if the DB is down |
 
 Hosting platforms can use `/api/health` for liveness checks and `/api/health/ready` for readiness checks.
 
@@ -166,7 +166,7 @@ $env:NODE_ENV = "production"      # PowerShell
 npm start
 ```
 
-Now visit `http://localhost:4000` — Express serves both the API and the React app from a single port.
+Now visit `http://localhost:4000` - Express serves both the API and the React app from a single port.
 
 ## Deployment Checklist
 
@@ -184,14 +184,14 @@ When deploying to **any** platform (Azure App Service, Railway, Render, etc.):
 
 ## Helpful Hints
 
-- **morgan "dev" vs "combined"**: `dev` is coloured and concise for local development. `combined` includes IP, user-agent, and referrer — useful for production logs.
-- **Static files only in production**: In development, Vite's dev server handles the frontend and proxies `/api` to Express. In production there's no Vite — Express serves everything.
+- **morgan "dev" vs "combined"**: `dev` is coloured and concise for local development. `combined` includes IP, user-agent, and referrer - useful for production logs.
+- **Static files only in production**: In development, Vite's dev server handles the frontend and proxies `/api` to Express. In production there's no Vite - Express serves everything.
 - **Graceful shutdown**: Without it, in-flight requests get dropped and database connections leak when the host restarts your server.
 - **`dist-server/`**: The compiled JavaScript output of your TypeScript server. `dist/` is the Vite-built frontend.
 
 ## ✅ Do
 
-- Use `morgan` for logging — every request should be visible
+- Use `morgan` for logging - every request should be visible
 - Serve static files only when `NODE_ENV === 'production'`
 - Handle `SIGTERM` and `SIGINT` for graceful shutdown
 - Use separate health endpoints for liveness vs readiness
@@ -199,8 +199,8 @@ When deploying to **any** platform (Azure App Service, Railway, Render, etc.):
 
 ## ❌ Don't
 
-- Don't skip `npm run build:server` — `npm start` needs the compiled JS
-- Don't hardcode `PORT` — hosting platforms inject it via env var
+- Don't skip `npm run build:server` - `npm start` needs the compiled JS
+- Don't hardcode `PORT` - hosting platforms inject it via env var
 - Don't set `CORS_ORIGIN` to `*` in production (use the exact frontend URL)
 - Don't forget to set `NODE_ENV=production` on your host
 - Don't log sensitive data (passwords, tokens) in morgan output
@@ -209,11 +209,11 @@ When deploying to **any** platform (Azure App Service, Railway, Render, etc.):
 
 1. `npm run build` and `npm run build:server` both succeed
 2. `npm start` starts the server (locally with `NODE_ENV=production`)
-3. Visit `http://localhost:4000` — you see the React app
+3. Visit `http://localhost:4000` - you see the React app
 4. `http://localhost:4000/api/health` returns `{ "status": "ok" }`
 5. `http://localhost:4000/api/health/ready` returns `{ "status": "ready" }`
 6. Request logs appear in the console for every API call
-7. Press Ctrl+C — the server shuts down cleanly with "Prisma disconnected"
+7. Press Ctrl+C - the server shuts down cleanly with "Prisma disconnected"
 
 ## Stretch
 

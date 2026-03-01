@@ -1,14 +1,14 @@
-# Step 15 — Edit & Delete Flows
+# Step 15 - Edit & Delete Flows
 
 ## Goal
 
-Add **edit** and **delete** functionality to the DevLog UI. When a user edits or deletes an entry the change appears instantly (**optimistic update**) and a **toast notification** confirms the result — or rolls the change back if the server request fails.
+Add **edit** and **delete** functionality to the DevLog UI. When a user edits or deletes an entry the change appears instantly (**optimistic update**) and a **toast notification** confirms the result - or rolls the change back if the server request fails.
 
 ## What You'll Practice
 
 - Building a reusable form component that works for both **create** and **edit**
 - Handling **PUT** and **DELETE** requests from the frontend
-- **Optimistic updates** — update the UI first, rollback on error
+- **Optimistic updates** - update the UI first, rollback on error
 - Showing **toast notifications** for user feedback
 - Wiring a new route with **URL params** (`/entries/:id/edit`)
 
@@ -72,7 +72,7 @@ npm install
 npx prisma generate
 ```
 
-### 3. Add new API functions — `src/api/entries.ts`
+### 3. Add new API functions - `src/api/entries.ts`
 
 You already have `fetchEntries` and `createEntry`. Add three more:
 
@@ -150,12 +150,12 @@ Each toast auto-dismisses after 3 seconds with `setTimeout` inside a `useEffect`
 **Optimistic update (edit):**
 1. Update the entry in state **immediately**
 2. Navigate to `/entries` and show a success toast
-3. Send `PUT` to the server — if it fails, **rollback** state and show an error toast
+3. Send `PUT` to the server - if it fails, **rollback** state and show an error toast
 
 **Optimistic delete:**
 1. Remove the entry from state **immediately**
 2. Show a success toast
-3. Send `DELETE` to the server — if it fails, **rollback** state and show an error toast
+3. Send `DELETE` to the server - if it fails, **rollback** state and show an error toast
 
 ### 8. Run it
 

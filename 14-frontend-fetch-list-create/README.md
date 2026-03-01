@@ -1,4 +1,4 @@
-# Step 14 — Frontend: Fetch List + Create
+# Step 14 - Frontend: Fetch List + Create
 
 ## Goal
 
@@ -56,7 +56,7 @@ export default defineConfig({
 This means `fetch('/api/entries')` in the browser will be proxied to
 `http://localhost:4000/api/entries`. No CORS issues during dev.
 
-### 3. Update the Entry types — `src/data/entries.ts`
+### 3. Update the Entry types - `src/data/entries.ts`
 
 The API returns tags as a comma-separated **string**, but the UI works with an
 **array**. Add an `ApiEntry` type and a converter:
@@ -97,9 +97,9 @@ export function toEntry(raw: ApiEntry): Entry {
 }
 ```
 
-Remove the `seedEntries` default export — we no longer need hardcoded data.
+Remove the `seedEntries` default export - we no longer need hardcoded data.
 
-### 4. Create the API client — `src/api/entries.ts`
+### 4. Create the API client - `src/api/entries.ts`
 
 ```ts
 import type { ApiEntry } from '../data/entries.ts'
@@ -144,7 +144,7 @@ import { fetchEntries, createEntry } from './api/entries.ts'
 import { toEntry } from './data/entries.ts'
 import type { Entry, Mood } from './data/entries.ts'
 
-// ... (Home, EntriesPage, NewEntryPage, About unchanged — see below)
+// ... (Home, EntriesPage, NewEntryPage, About unchanged - see below)
 
 function App() {
   const [entries, setEntries] = useState<Entry[]>([])
@@ -181,10 +181,10 @@ function App() {
 ```
 
 Key changes from Step 10:
-1. **`useState<Entry[]>([])`** — starts empty (no seed data)
-2. **`useEffect` + `fetchEntries()`** — loads entries from the API on mount
-3. **`loading` state** — passed to `EntriesPage` to show "Loading…"
-4. **`handleAddEntry` is now `async`** — calls `createEntry()` then prepends
+1. **`useState<Entry[]>([])`** - starts empty (no seed data)
+2. **`useEffect` + `fetchEntries()`** - loads entries from the API on mount
+3. **`loading` state** - passed to `EntriesPage` to show "Loading…"
+4. **`handleAddEntry` is now `async`** - calls `createEntry()` then prepends
    the new entry to local state
 
 The `EntriesPage` component adds a loading check:
@@ -232,11 +232,11 @@ Open `http://localhost:5173` in your browser.
 npm run build    # 0 errors
 ```
 
-1. Navigate to **Entries** — you should see entries from the database (or "No
+1. Navigate to **Entries** - you should see entries from the database (or "No
    entries yet" if the table is empty)
-2. Navigate to **New Entry** — fill the form and submit
+2. Navigate to **New Entry** - fill the form and submit
 3. You should be redirected to **Entries** and see the new entry at the top
-4. Refresh the page — the entry persists (it's in the database now!)
+4. Refresh the page - the entry persists (it's in the database now!)
 
 ## File Tree
 
@@ -247,17 +247,17 @@ npm run build    # 0 errors
 ├── tsconfig.json
 ├── tsconfig.app.json
 ├── tsconfig.node.json
-├── vite.config.ts              ← UPDATED — adds server.proxy
+├── vite.config.ts              ← UPDATED - adds server.proxy
 ├── eslint.config.js
 ├── public/
 │   └── profile.jpg
 └── src/
     ├── main.tsx
-    ├── App.tsx                 ← UPDATED — useEffect + fetch, async handleAddEntry
+    ├── App.tsx                 ← UPDATED - useEffect + fetch, async handleAddEntry
     ├── index.css
     ├── vite-env.d.ts
     ├── api/
-    │   └── entries.ts          ← NEW — fetchEntries(), createEntry()
+    │   └── entries.ts          ← NEW - fetchEntries(), createEntry()
     ├── components/
     │   ├── Header.tsx
     │   ├── AboutSection.tsx
@@ -265,7 +265,7 @@ npm run build    # 0 errors
     │   ├── Footer.tsx
     │   └── NewEntryForm.tsx
     └── data/
-        └── entries.ts          ← UPDATED — ApiEntry type, toEntry(), no seed data
+        └── entries.ts          ← UPDATED - ApiEntry type, toEntry(), no seed data
 ```
 
 ## Hints
@@ -289,16 +289,16 @@ API, or configure CORS properly.
 The database stores `tags` as a comma-separated **string** (SQL Server doesn't
 support arrays). The UI works with a `string[]` for easier rendering. The
 `toEntry()` function converts between the two shapes. This keeps components
-clean — they always work with `Entry` (tags as array).
+clean - they always work with `Entry` (tags as array).
 
 </details>
 
 <details>
 <summary>Why <code>useEffect</code> with an empty dependency array?</summary>
 
-`useEffect(() => { ... }, [])` runs once after the first render — like
+`useEffect(() => { ... }, [])` runs once after the first render - like
 "on mount." This is the standard pattern for fetching data when a component
-loads. The empty `[]` means "no dependencies — don't re-run."
+loads. The empty `[]` means "no dependencies - don't re-run."
 
 </details>
 
@@ -307,7 +307,7 @@ loads. The empty `[]` means "no dependencies — don't re-run."
 
 The `fetchEntries()` call will fail and the `.catch()` will log the error.
 The page will show "No entries yet" because the entries array stays empty.
-In a production app you would show a proper error message — we'll improve
+In a production app you would show a proper error message - we'll improve
 this in later steps.
 
 </details>

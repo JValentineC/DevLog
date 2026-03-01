@@ -1,4 +1,4 @@
-# Step 13 — CRUD Entries
+# Step 13 - CRUD Entries
 
 ## Goal
 
@@ -26,7 +26,7 @@ through Prisma and SQL Server.
 
 ## Prerequisites
 
-- Completed **Step 12** (Prisma + SQL Server — `Entry` table exists)
+- Completed **Step 12** (Prisma + SQL Server - `Entry` table exists)
 - SQL Server running with the `Entry` table pushed
 - **Node ≥ 20** and **npm**
 
@@ -52,10 +52,10 @@ Update `DATABASE_URL` with your real credentials (same as Step 12).
 
 ```bash
 npx prisma generate
-npx prisma db push        # idempotent — table already exists
+npx prisma db push        # idempotent - table already exists
 ```
 
-### 4. Create the entries router — `src/routes/entries.ts`
+### 4. Create the entries router - `src/routes/entries.ts`
 
 Create a new file `src/routes/entries.ts`:
 
@@ -65,7 +65,7 @@ import { prisma } from '../lib/prisma.js'
 
 const router = Router()
 
-// GET /api/entries — list all entries (newest first)
+// GET /api/entries - list all entries (newest first)
 router.get('/', async (_req, res) => {
   const entries = await prisma.entry.findMany({
     orderBy: { createdAt: 'desc' },
@@ -73,7 +73,7 @@ router.get('/', async (_req, res) => {
   res.json(entries)
 })
 
-// GET /api/entries/:id — get one entry
+// GET /api/entries/:id - get one entry
 router.get('/:id', async (req, res) => {
   const id = Number(req.params.id)
   if (Number.isNaN(id)) {
@@ -89,7 +89,7 @@ router.get('/:id', async (req, res) => {
   res.json(entry)
 })
 
-// POST /api/entries — create a new entry
+// POST /api/entries - create a new entry
 router.post('/', async (req, res) => {
   const { title, summary, mood, tags } = req.body
 
@@ -109,7 +109,7 @@ router.post('/', async (req, res) => {
   res.status(201).json(entry)
 })
 
-// PUT /api/entries/:id — update an entry
+// PUT /api/entries/:id - update an entry
 router.put('/:id', async (req, res) => {
   const id = Number(req.params.id)
   if (Number.isNaN(id)) {
@@ -142,7 +142,7 @@ router.put('/:id', async (req, res) => {
   res.json(entry)
 })
 
-// DELETE /api/entries/:id — delete an entry
+// DELETE /api/entries/:id - delete an entry
 router.delete('/:id', async (req, res) => {
   const id = Number(req.params.id)
   if (Number.isNaN(id)) {
@@ -288,11 +288,11 @@ curl -X DELETE http://localhost:4000/api/entries/1
 ├── prisma/
 │   └── schema.prisma
 └── src/
-    ├── index.ts            ← UPDATED — mounts entriesRouter
+    ├── index.ts            ← UPDATED - mounts entriesRouter
     ├── lib/
     │   └── prisma.ts
     └── routes/
-        └── entries.ts      ← NEW — all five CRUD handlers
+        └── entries.ts      ← NEW - all five CRUD handlers
 ```
 
 ## Hints
@@ -327,7 +327,7 @@ error response prevents this.
 <summary>Why <code>String(title)</code> instead of just <code>title</code>?</summary>
 
 `req.body` is typed as `any`. Wrapping values in `String()` ensures Prisma gets
-a string even if someone sends a number. This is a lightweight safety measure —
+a string even if someone sends a number. This is a lightweight safety measure -
 in a production app you would use a validation library like Zod.
 
 </details>
@@ -336,7 +336,7 @@ in a production app you would use a validation library like Zod.
 <summary>What does 204 No Content mean?</summary>
 
 HTTP 204 means "the request succeeded, but there is no body to return." It is
-the standard response for a successful DELETE — the resource is gone, so there
+the standard response for a successful DELETE - the resource is gone, so there
 is nothing to send back.
 
 </details>

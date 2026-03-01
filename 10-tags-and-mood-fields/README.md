@@ -1,4 +1,4 @@
-# Step 10 — Tags and Mood Fields
+# Step 10 - Tags and Mood Fields
 
 ## Goal
 
@@ -19,7 +19,7 @@ these fields and the entry card to display them.
 
 ## Prerequisites
 
-- Completed **Step 09** (state lifting — entries in `App`, callback props)
+- Completed **Step 09** (state lifting - entries in `App`, callback props)
 - Comfortable with TypeScript interfaces
 
 ## Step-by-Step Instructions
@@ -145,7 +145,7 @@ npm run build   # 0 errors
 npm run dev     # open browser
 ```
 
-1. Check the entries page — each card shows a date, mood, summary, and tags
+1. Check the entries page - each card shows a date, mood, summary, and tags
 2. Create a new entry with a mood and comma-separated tags
 3. Verify the new entry appears with all fields displayed
 
@@ -184,7 +184,7 @@ npm run dev     # open browser
 
 A union type like `'happy' | 'curious' | 'frustrated' | 'neutral'` means the
 value must be exactly one of those strings. TypeScript will catch it if you try
-to assign `'sad'` — it's not in the union. This is much safer than using a
+to assign `'sad'` - it's not in the union. This is much safer than using a
 plain `string`.
 
 </details>
@@ -228,7 +228,7 @@ without pulling in a date library.
 
 A full ISO timestamp (`2025-06-01T09:00:00.000Z`) carries both date and time
 information and can be sorted accurately. The old `date` string (`"2025-06-01"`)
-was date-only. The name `createdAt` is a common convention in databases — it
+was date-only. The name `createdAt` is a common convention in databases - it
 prepares the shape for the backend steps ahead.
 
 </details>
@@ -237,12 +237,12 @@ prepares the shape for the backend steps ahead.
 
 | Do | Don't |
 |---|---|
-| Use a TypeScript union type for mood values | Use a plain `string` — you lose compile-time safety |
+| Use a TypeScript union type for mood values | Use a plain `string` - you lose compile-time safety |
 | Parse comma-separated tags into a clean array | Store the raw comma-separated string in the entry |
 | Use `toISOString()` for `createdAt` | Store a human-formatted date string |
 | Display `toLocaleDateString()` for the user | Show raw ISO strings in the UI |
 | Update **every** consumer when you change the interface | Leave old code referencing the removed `date` field |
-| Keep mood and tags optional in the UI (no validation needed) | Require tags — they're a nice-to-have, not mandatory |
+| Keep mood and tags optional in the UI (no validation needed) | Require tags - they're a nice-to-have, not mandatory |
 
 ## Check Your Work
 
@@ -260,5 +260,5 @@ prepares the shape for the backend steps ahead.
 
 - Map each mood to an emoji and display it in the card (e.g., happy → 😊)
 - Add a mood filter on the entries page using a `<select>` that narrows the list
-- Show tags as clickable items (no filtering yet — just visual distinction)
+- Show tags as clickable items (no filtering yet - just visual distinction)
 - Add a `<datalist>` to the tags input that suggests previously used tags

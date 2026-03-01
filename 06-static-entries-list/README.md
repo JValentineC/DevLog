@@ -1,10 +1,10 @@
-# Step 06 — Static Entries List
+# Step 06 - Static Entries List
 
 ## Goal
 
 Add an **All Entries** page that renders a list of hardcoded dev-log entries.
 Each entry is displayed with its own `EntryCard` component. No state management
-yet — the data lives in a simple TypeScript module.
+yet - the data lives in a simple TypeScript module.
 
 ## What You'll Practice
 
@@ -171,7 +171,7 @@ human-friendly format.
 | Do | Don't |
 |---|---|
 | Export a named `Entry` interface so other files can import it | Use `any` or untyped objects for entry data |
-| Use `key` on every mapped element | Forget the `key` prop — React will warn you |
+| Use `key` on every mapped element | Forget the `key` prop - React will warn you |
 | Keep entries hardcoded in a `.ts` file | Fetch from an API or use `useState` (that comes later) |
 | Use semantic elements (`article`, `time`) | Use generic `<div>` and `<span>` for everything |
 

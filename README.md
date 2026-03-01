@@ -1,4 +1,4 @@
-# DevLog — Learn Full-Stack Web Development Step by Step
+# DevLog - Learn Full-Stack Web Development Step by Step
 
 A hands-on tutorial that guides interns how to build a **Dev Log** application from scratch using the **SERN stack** (SQL Server, Express, React, Node). Each step lives in its own folder with a working app and a beginner-friendly README.
 
@@ -10,13 +10,13 @@ A hands-on tutorial that guides interns how to build a **Dev Log** application f
 
 ## About the Author
 
-My name is **Jonathan Ramirez**, a proud graduate of [i.c.Stars](https://www.icstars.org/) Cycle 53. i.c.Stars is a nonprofit organization that has been transforming lives through technology for over 25 years — training young adults from underserved communities and launching them into tech careers.
+My name is **Jonathan Ramirez**, a proud graduate of [i.c.Stars](https://www.icstars.org/) Cycle 53. i.c.Stars is a nonprofit organization that has been transforming lives through technology for over 25 years - training young adults from underserved communities and launching them into tech careers.
 
-After commencing, I went on to work as a **Program Manager at United Airlines**. When my contract ended, I dove into self-learning and self-development — sharpening my skills in full-stack development, leadership, and mentoring. Today I hold a position at i.c.Stars as a **Tech Fellow**, where I help interns reach their potential and support the program team in any way I can.
+After commencing, I went on to work as a **Program Manager at United Airlines**. When my contract ended, I dove into self-learning and self-development - sharpening my skills in full-stack development, leadership, and mentoring. Today I hold a position at i.c.Stars as a **Tech Fellow**, where I help interns reach their potential and support the program team in any way I can.
 
-This curriculum is a direct result of that journey. Every step in this repo was built with i.c.Stars interns in mind — people who are hungry to learn, willing to put in the work, and deserve clear, honest instruction.
+This curriculum is a direct result of that journey. Every step in this repo was built with i.c.Stars interns in mind - people who are hungry to learn, willing to put in the work, and deserve clear, honest instruction.
 
-If you'd like to learn more about i.c.Stars — or know someone whose life could be changed by joining — visit **[https://www.icstars.org/](https://www.icstars.org/)**.
+If you'd like to learn more about i.c.Stars - or know someone whose life could be changed by joining - visit **[https://www.icstars.org/](https://www.icstars.org/)**.
 
 ## Prerequisites
 
@@ -25,7 +25,7 @@ If you'd like to learn more about i.c.Stars — or know someone whose life could
 | Node.js | 20+ | `node -v` |
 | npm | (comes with Node) | `npm -v` |
 | Git | any recent version | `git --version` |
-| Code editor | VS Code recommended | — |
+| Code editor | VS Code recommended | - |
 
 ## How to Use This Repo
 
@@ -82,22 +82,22 @@ Or in VS Code, right-click two files and choose **Compare Selected**.
 
 ## Every Step README Follows the Same Outline
 
-- **Goal** — What you're building
-- **What You'll Practice** — Skills introduced
-- **Prerequisites** — What must be done first
-- **Steps** — Numbered instructions with code
-- **Helpful Hints** — Context and explanations
-- **Do ✅ / Don't ❌** — Common pitfalls
-- **Check Your Work** — Verification checklist
-- **Stretch** — Optional challenges
+- **Goal** - What you're building
+- **What You'll Practice** - Skills introduced
+- **Prerequisites** - What must be done first
+- **Steps** - Numbered instructions with code
+- **Helpful Hints** - Context and explanations
+- **Do ✅ / Don't ❌** - Common pitfalls
+- **Check Your Work** - Verification checklist
+- **Stretch** - Optional challenges
 
 ## Teaching Philosophy
 
-- **One concept at a time** — small wins build confidence
-- **Semantic HTML first** — accessibility from the start
-- **No frameworks early** — styling comes after structure and routing
-- **Repeatable patterns** — same README format every step
-- **Commit discipline** — one commit per step, message explains the "why"
+- **One concept at a time** - small wins build confidence
+- **Semantic HTML first** - accessibility from the start
+- **No frameworks early** - styling comes after structure and routing
+- **Repeatable patterns** - same README format every step
+- **Commit discipline** - one commit per step, message explains the "why"
 
 ## Tech Stack
 

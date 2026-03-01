@@ -1,4 +1,4 @@
-# Step 21 — Testing and CI
+# Step 21 - Testing and CI
 
 ## Goal
 
@@ -27,13 +27,13 @@ Add automated tests to the DevLog app using **Vitest** and **React Testing Libra
 | `package.json` | Added vitest, RTL, jest-dom, user-event, jsdom, supertest as devDependencies; added `test` and `test:watch` scripts |
 | `vite.config.ts` | Added `/// <reference types="vitest/config" />` and `test` block (globals, jsdom environment, setupFiles) |
 | `src/vite-env.d.ts` | Added `/// <reference types="vitest/globals" />` for IDE type support |
-| `server/app.ts` | **New** — extracted Express app creation (middleware, routes, health checks) from `server/index.ts` so it can be imported by tests |
-| `server/index.ts` | Simplified — imports `app` from `./app.js`, keeps only startup guard, static files, listen, and graceful shutdown |
+| `server/app.ts` | **New** - extracted Express app creation (middleware, routes, health checks) from `server/index.ts` so it can be imported by tests |
+| `server/index.ts` | Simplified - imports `app` from `./app.js`, keeps only startup guard, static files, listen, and graceful shutdown |
 | `tsconfig.server.json` | Added `server/__tests__` to `exclude` so `tsc` doesn't compile test files |
-| `src/test/setup.ts` | **New** — imports `@testing-library/jest-dom/vitest` for custom matchers |
-| `src/components/__tests__/*.test.tsx` | **New** — 4 component test files |
-| `server/__tests__/health.test.ts` | **New** — API health endpoint test |
-| `.github/workflows/ci.yml` | **New** — GitHub Actions pipeline |
+| `src/test/setup.ts` | **New** - imports `@testing-library/jest-dom/vitest` for custom matchers |
+| `src/components/__tests__/*.test.tsx` | **New** - 4 component test files |
+| `server/__tests__/health.test.ts` | **New** - API health endpoint test |
+| `.github/workflows/ci.yml` | **New** - GitHub Actions pipeline |
 
 Everything else is unchanged from Step 20.
 
@@ -61,7 +61,7 @@ npm test
 
 ### 1. Install test dependencies
 
-Vitest is the test runner — it uses the same Vite config your app already has, so there's no separate bundler config for tests.
+Vitest is the test runner - it uses the same Vite config your app already has, so there's no separate bundler config for tests.
 
 ```bash
 npm install -D vitest @testing-library/react @testing-library/jest-dom \
@@ -100,7 +100,7 @@ export default defineConfig(({ mode }) => {
 
 The `/// <reference types="vitest/config" />` directive tells TypeScript that the config object includes `test`.
 
-**`globals: true`** makes `describe`, `it`, `expect`, and `vi` available in every test file without importing them — just like Jest.
+**`globals: true`** makes `describe`, `it`, `expect`, and `vi` available in every test file without importing them - just like Jest.
 
 ### 3. Create the setup file
 
@@ -112,16 +112,16 @@ import '@testing-library/jest-dom/vitest'
 
 This single import extends Vitest's `expect` with DOM-specific matchers:
 
-- `toBeInTheDocument()` — element exists in the DOM
-- `toHaveValue()` — form input has a specific value
-- `toBeVisible()` — element is visible to the user
-- `toHaveTextContent()` — element contains specific text
+- `toBeInTheDocument()` - element exists in the DOM
+- `toHaveValue()` - form input has a specific value
+- `toBeVisible()` - element is visible to the user
+- `toHaveTextContent()` - element contains specific text
 
 ### 4. Extract `server/app.ts` for testability
 
 To test Express routes with supertest, you need the `app` object **without** calling `app.listen()`. Split the server into two files:
 
-**`server/app.ts`** — creates and exports the Express app:
+**`server/app.ts`** - creates and exports the Express app:
 
 ```ts
 import express from 'express'
@@ -132,14 +132,14 @@ import morgan from 'morgan'
 export default app
 ```
 
-**`server/index.ts`** — imports the app and starts it:
+**`server/index.ts`** - imports the app and starts it:
 
 ```ts
 import app from './app.js'
 // ... startup guard, static files, listen, graceful shutdown ...
 ```
 
-This separation is a common pattern — it lets supertest make requests to the app without starting a real HTTP server.
+This separation is a common pattern - it lets supertest make requests to the app without starting a real HTTP server.
 
 > **Morgan in tests**: `app.ts` disables morgan logging when `NODE_ENV === 'test'` to keep test output clean.
 
@@ -160,7 +160,7 @@ src/components/
   EntryForm.tsx
 ```
 
-#### Start simple — `Footer.test.tsx`
+#### Start simple - `Footer.test.tsx`
 
 ```tsx
 import { render, screen } from '@testing-library/react'
@@ -179,7 +179,7 @@ Key concepts:
 - **`screen`** provides queries to find elements (`getByText`, `getByRole`, etc.)
 - **`toBeInTheDocument()`** is from jest-dom (our setup file)
 
-#### Test props and events — `EntryCard.test.tsx`
+#### Test props and events - `EntryCard.test.tsx`
 
 Components that accept props and use React Router need some extra setup:
 
@@ -195,11 +195,11 @@ function renderCard(props = {}) {
 }
 ```
 
-- **`MemoryRouter`** wraps components that use `<Link>` — it provides router context without a real browser URL
+- **`MemoryRouter`** wraps components that use `<Link>` - it provides router context without a real browser URL
 - **`vi.fn()`** creates a mock function you can assert on
 - **`vi.spyOn(window, 'confirm')`** intercepts the browser confirm dialog
 
-#### Test forms — `EntryForm.test.tsx`
+#### Test forms - `EntryForm.test.tsx`
 
 ```tsx
 import userEvent from '@testing-library/user-event'
@@ -209,7 +209,7 @@ await userEvent.click(screen.getByText('Save Entry'))
 ```
 
 - **`userEvent`** is async and simulates real user behavior (keystrokes, focus, blur)
-- **`getByLabelText()`** finds inputs by their `<label>` — this tests accessibility too:
+- **`getByLabelText()`** finds inputs by their `<label>` - this tests accessibility too:
   if this query fails, your form has a labeling issue
 
 ### 6. Write API tests
@@ -230,8 +230,8 @@ describe('GET /api/health', () => {
 })
 ```
 
-- **`// @vitest-environment node`** — this magic comment tells Vitest to use Node (not jsdom) for this file
-- **`request(app)`** — supertest takes the Express app and makes in-memory requests — no `listen()` needed
+- **`// @vitest-environment node`** - this magic comment tells Vitest to use Node (not jsdom) for this file
+- **`request(app)`** - supertest takes the Express app and makes in-memory requests - no `listen()` needed
 - The health endpoint doesn't hit the database, so no DB connection is required
 
 ### 7. Add test scripts to `package.json`
@@ -245,8 +245,8 @@ describe('GET /api/health', () => {
 }
 ```
 
-- **`vitest run`** — runs all tests once and exits (for CI)
-- **`vitest`** — runs in watch mode, re-running tests when files change (for development)
+- **`vitest run`** - runs all tests once and exits (for CI)
+- **`vitest`** - runs in watch mode, re-running tests when files change (for development)
 
 ### 8. Set up GitHub Actions CI
 
@@ -293,28 +293,28 @@ jobs:
 
 ## Helpful Hints
 
-- **Test file naming**: Vitest discovers files matching `**/*.test.{ts,tsx}` by default — no configuration needed.
-- **`getByRole` vs `getByText`**: Prefer `getByRole` when testing headings, buttons, or links — it queries by accessibility role, which means your tests also verify accessibility.
-- **`queryBy*` returns `null`**: Use `queryByText` (not `getByText`) when asserting something is **not** present — `getByText` throws if the element isn't found.
-- **`userEvent` is async**: Always `await` userEvent calls — they simulate real browser events that may trigger state updates.
-- **Watch mode**: `npm run test:watch` re-runs affected tests on save — much faster than running the full suite manually.
-- **Server test environment**: Use `// @vitest-environment node` at the top of server test files — without it, Vitest defaults to jsdom and Node built-ins may behave unexpectedly.
+- **Test file naming**: Vitest discovers files matching `**/*.test.{ts,tsx}` by default - no configuration needed.
+- **`getByRole` vs `getByText`**: Prefer `getByRole` when testing headings, buttons, or links - it queries by accessibility role, which means your tests also verify accessibility.
+- **`queryBy*` returns `null`**: Use `queryByText` (not `getByText`) when asserting something is **not** present - `getByText` throws if the element isn't found.
+- **`userEvent` is async**: Always `await` userEvent calls - they simulate real browser events that may trigger state updates.
+- **Watch mode**: `npm run test:watch` re-runs affected tests on save - much faster than running the full suite manually.
+- **Server test environment**: Use `// @vitest-environment node` at the top of server test files - without it, Vitest defaults to jsdom and Node built-ins may behave unexpectedly.
 
 ## ✅ Do
 
 - Write at least one test per component before shipping
-- Use `getByRole` and `getByLabelText` — they double as accessibility checks
-- Keep tests focused — one behavior per `it()` block
+- Use `getByRole` and `getByLabelText` - they double as accessibility checks
+- Keep tests focused - one behavior per `it()` block
 - Run `npm test` before pushing (or let CI catch it)
-- Mock external dependencies (APIs, databases) — don't hit real services in tests
+- Mock external dependencies (APIs, databases) - don't hit real services in tests
 
 ## ❌ Don't
 
-- Don't test implementation details (internal state, CSS class names) — test what the user sees
+- Don't test implementation details (internal state, CSS class names) - test what the user sees
 - Don't forget `MemoryRouter` when testing components that use `<Link>` or `useNavigate`
-- Don't skip `await` on `userEvent` — it leads to flaky tests
-- Don't import `describe`/`it`/`expect` when `globals: true` is set — they're already available
-- Don't put your entire Express server in one file — extract `app.ts` so tests can import the app without starting a listener
+- Don't skip `await` on `userEvent` - it leads to flaky tests
+- Don't import `describe`/`it`/`expect` when `globals: true` is set - they're already available
+- Don't put your entire Express server in one file - extract `app.ts` so tests can import the app without starting a listener
 
 ## Check Your Work
 

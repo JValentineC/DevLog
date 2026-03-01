@@ -1,8 +1,8 @@
-# Step 04 — Basic Routing (One Link to a Second Page)
+# Step 04 - Basic Routing (One Link to a Second Page)
 
 ## Goal
 
-Introduce **client-side routing** using `react-router-dom`. Add exactly one link on the Home page that navigates to a separate About page — no full-page reload. We use **`HashRouter`** so the app will work on GitHub Pages later.
+Introduce **client-side routing** using `react-router-dom`. Add exactly one link on the Home page that navigates to a separate About page - no full-page reload. We use **`HashRouter`** so the app will work on GitHub Pages later.
 
 ## What You'll Practice
 
@@ -14,7 +14,7 @@ Introduce **client-side routing** using `react-router-dom`. Add exactly one link
 
 ## Prerequisites
 
-- Step 03 completed — header with profile photo
+- Step 03 completed - header with profile photo
 
 ## Steps
 
@@ -128,34 +128,34 @@ npm run dev
 ```
 
 - The Home page shows at `http://localhost:5173/#/`
-- Click **"Go to About Page"** — the URL changes to `/#/about` and the About content appears, **without a page reload**
+- Click **"Go to About Page"** - the URL changes to `/#/about` and the About content appears, **without a page reload**
 - Click **"Back to Home"** to return
 
 ## Helpful Hints
 
-- **`<Link to="/about">`** vs **`<a href="/about">`** — `<Link>` is a React Router component that navigates *within* the app without reloading the page. A regular `<a>` would cause a full page reload and bypass the router.
+- **`<Link to="/about">`** vs **`<a href="/about">`** - `<Link>` is a React Router component that navigates *within* the app without reloading the page. A regular `<a>` would cause a full page reload and bypass the router.
 - **`<Routes>`** is the container that looks at the current URL and renders the matching `<Route>`.
 - **`<Route path="/" element={<Home />} />`** means "when the URL path is `/`, render the `Home` component."
 - **Hash routing URLs** look like `http://localhost:5173/#/about`. Everything after the `#` is handled by JavaScript, not the server. This is why it works on GitHub Pages without any server config.
-- **`new Date().getFullYear()`** in the footer dynamically shows the current year — no need to update it manually each January.
+- **`new Date().getFullYear()`** in the footer dynamically shows the current year - no need to update it manually each January.
 - Both `Home` and `About` are in the same file for now. In a future step, we'll extract them into separate files.
 
 ## Do ✅ / Don't ❌
 
 | ✅ Do | ❌ Don't |
 |---|---|
-| Use `<Link>` from React Router for navigation. | Use `<a href="...">` for internal links — that bypasses the router. |
-| Wrap the app in `<HashRouter>` in `main.tsx`. | Put the router inside `App.tsx` — it should wrap the entire app at the entry point. |
-| Keep both page components in `App.tsx` for now. | Create separate files yet — that's a future step. |
+| Use `<Link>` from React Router for navigation. | Use `<a href="...">` for internal links - that bypasses the router. |
+| Wrap the app in `<HashRouter>` in `main.tsx`. | Put the router inside `App.tsx` - it should wrap the entire app at the entry point. |
+| Keep both page components in `App.tsx` for now. | Create separate files yet - that's a future step. |
 | Add a "Back to Home" link on the About page. | Leave the user stranded with no way back. |
-| Commit: `feat(step-04): add routing with HashRouter and About page`. | Use `BrowserRouter` — it won't work on GitHub Pages without extra config. |
+| Commit: `feat(step-04): add routing with HashRouter and About page`. | Use `BrowserRouter` - it won't work on GitHub Pages without extra config. |
 
 ## Check Your Work
 
 - [ ] `npm run dev` starts without errors.
 - [ ] The Home page loads at `/#/` with your profile photo, heading, and a **"Go to About Page"** link.
-- [ ] Clicking the link navigates to `/#/about` — the About content appears.
-- [ ] The **page does not reload** during navigation (watch the browser tab — no spinner).
+- [ ] Clicking the link navigates to `/#/about` - the About content appears.
+- [ ] The **page does not reload** during navigation (watch the browser tab - no spinner).
 - [ ] The About page has a **"Back to Home"** link that works.
 - [ ] The URL bar shows `/#/` and `/#/about` (hash-based routing).
 - [ ] No `className` attributes anywhere in `App.tsx`.
@@ -163,7 +163,7 @@ npm run dev
 
 ## Stretch
 
-1. **Add a 404 page:** Add a catch-all route `<Route path="*" element={<p>Page not found!</p>} />` at the bottom of your `<Routes>`. Navigate to `/#/nonsense` — what happens?
+1. **Add a 404 page:** Add a catch-all route `<Route path="*" element={<p>Page not found!</p>} />` at the bottom of your `<Routes>`. Navigate to `/#/nonsense` - what happens?
 2. **Inspect the DOM:** Click the navigation link and watch the Elements panel in DevTools. Does the entire page get replaced, or just the content inside `#root`?
 3. **Try `BrowserRouter`:** Temporarily swap `HashRouter` for `BrowserRouter` in `main.tsx`. Navigate to `/about` and hit refresh. What happens? (Swap it back to `HashRouter` when done.)
 4. **Read the docs:** Check out the [React Router tutorial](https://reactrouter.com/start/framework/routing) to see what else routes can do (nested routes, URL params, loaders).

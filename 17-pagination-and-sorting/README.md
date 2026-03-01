@@ -1,4 +1,4 @@
-# Step 17 — Pagination and Sorting
+# Step 17 - Pagination and Sorting
 
 Server-side pagination with `skip`/`take`, sortable columns, and frontend controls.
 
@@ -26,11 +26,11 @@ everything in the URL via `useSearchParams`.
 
 ## Key Changes from Step 16
 
-### Backend — `server/routes/entries.ts`
+### Backend - `server/routes/entries.ts`
 
 1. **`GET /`** now reads `page`, `limit`, `sort`, `order` query params in
    addition to `tag`.
-2. **Sort whitelist** — only `createdAt`, `title`, `mood` are allowed; anything
+2. **Sort whitelist** - only `createdAt`, `title`, `mood` are allowed; anything
    else defaults to `createdAt`. This prevents arbitrary column access.
 3. **`limit` is capped** at 100 and floored at 1.
 4. Two Prisma calls run in parallel via `Promise.all`:
@@ -41,37 +41,37 @@ everything in the URL via `useSearchParams`.
    { "data": [...], "page": 1, "limit": 10, "total": 42, "totalPages": 5 }
    ```
 
-### Backend — `prisma/schema.prisma`
+### Backend - `prisma/schema.prisma`
 
 Added `@@index([createdAt], name: "idx_entry_created")` for efficient
 `ORDER BY createdAt` pagination.
 
-### Frontend — `src/data/entries.ts`
+### Frontend - `src/data/entries.ts`
 
 New `PaginatedResponse` interface matching the server envelope.
 
-### Frontend — `src/api/entries.ts`
+### Frontend - `src/api/entries.ts`
 
 - `fetchEntries` now accepts a `FetchEntriesParams` object (`tag`, `page`,
   `limit`, `sort`, `order`) and builds a dynamic query string.
 - Returns `PaginatedResponse` instead of `ApiEntry[]`.
 
-### Frontend — `src/components/Pagination.tsx` (new)
+### Frontend - `src/components/Pagination.tsx` (new)
 
 Previous / Next buttons with "Page X of Y (N entries)" text. Hidden when
 there's only one page.
 
-### Frontend — `src/components/SortControls.tsx` (new)
+### Frontend - `src/components/SortControls.tsx` (new)
 
 Two `<select>` dropdowns: sort field (Date / Title / Mood) and order
 (Newest first / Oldest first).
 
-### Frontend — `src/components/TagFilter.tsx`
+### Frontend - `src/components/TagFilter.tsx`
 
 Updated to preserve other search params when changing the tag, and resets
 `page` to 1 on filter change.
 
-### Frontend — `src/App.tsx`
+### Frontend - `src/App.tsx`
 
 - `EntriesPage` reads `sort`, `order`, `page` from `searchParams`.
 - All controls (tag, sort, order, pagination) call `updateParams` which
@@ -86,16 +86,16 @@ Updated to preserve other search params when changing the tag, and resets
 1. Copy `.env` from a previous full-stack step and update if needed.
 2. `npm install`
 3. `npx prisma generate`
-4. `npx prisma db push` — creates the new `idx_entry_created` index.
+4. `npx prisma db push` - creates the new `idx_entry_created` index.
 5. `npm run dev`
 6. Open <http://localhost:5173> → Entries.
-7. Try the sort dropdowns — switch between Date / Title / Mood.
+7. Try the sort dropdowns - switch between Date / Title / Mood.
 8. If you have more than 10 entries, use Previous / Next to paginate.
-9. Combine tag filter + sorting + pagination — the URL updates for each.
+9. Combine tag filter + sorting + pagination - the URL updates for each.
 
 ## Helpful Hints
 
-- `skip = (page - 1) * limit` — this is the standard offset formula.
+- `skip = (page - 1) * limit` - this is the standard offset formula.
 - `Promise.all([findMany, count])` runs both queries at the same time, which is
   faster than running them one after another.
 - Always whitelist sort columns. Never pass user input directly to `orderBy`.
@@ -115,10 +115,10 @@ Updated to preserve other search params when changing the tag, and resets
 
 ## 🚫 Don't
 
-- Don't pass user input directly to `orderBy` — always whitelist columns.
-- Don't skip `count` — without it you can't compute `totalPages`.
-- Don't paginate on the client — filtering and pagination happen on the server.
-- Don't forget `@@index([createdAt])` — it speeds up the most common sort.
+- Don't pass user input directly to `orderBy` - always whitelist columns.
+- Don't skip `count` - without it you can't compute `totalPages`.
+- Don't paginate on the client - filtering and pagination happen on the server.
+- Don't forget `@@index([createdAt])` - it speeds up the most common sort.
 
 ## Stretch
 

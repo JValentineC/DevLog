@@ -1,8 +1,8 @@
-# Step 24 — daisyUI Component Styling
+# Step 24 - daisyUI Component Styling
 
 ## Goal
 
-Restyle every remaining component with **daisyUI classes**: entry cards, forms, pagination, filters, sort controls, toasts, and the login form. By the end of this step the entire UI uses daisyUI's design system — no inline `style={{…}}` or bare HTML elements left.
+Restyle every remaining component with **daisyUI classes**: entry cards, forms, pagination, filters, sort controls, toasts, and the login form. By the end of this step the entire UI uses daisyUI's design system - no inline `style={{…}}` or bare HTML elements left.
 
 ## What You'll Practice
 
@@ -123,10 +123,10 @@ Check every page:
 
 | Topic | Hint |
 |-------|------|
-| **`card-body`** | Always wrap card content in `card-body` — it adds padding and flex layout. |
+| **`card-body`** | Always wrap card content in `card-body` - it adds padding and flex layout. |
 | **`form-control`** | This is the wrapper that ties `label`, `input`, and error text together in daisyUI. |
 | **`input-error`** | Add conditionally: `` className={`input input-bordered${hasError ? ' input-error' : ''}`} `` |
-| **`badge` variants** | `badge-primary`, `badge-outline`, `badge-sm` — combine them freely. |
+| **`badge` variants** | `badge-primary`, `badge-outline`, `badge-sm` - combine them freely. |
 | **`join`** | Groups child elements visually (shared borders). Each child needs `join-item`. |
 | **`toast` positioning** | `toast-end toast-top` places toasts at top-right. daisyUI handles the fixed positioning. |
 
@@ -171,21 +171,21 @@ The best way to learn daisyUI is to browse the official documentation:
 
 Every component page shows live previews, the required HTML/class structure, and all available variants. Here's how to get the most out of it:
 
-1. **Search by component name** — Need a card? Go to the Card page. Need a modal? Search "modal." Each page is self-contained.
-2. **Copy the class list, not the HTML** — daisyUI docs show plain HTML examples, but you're writing JSX. Copy the class names and apply them to your React components.
-3. **Check the "Modifiers" section** — Most components have size (`btn-sm`, `btn-lg`), color (`btn-primary`, `btn-error`), and state (`btn-disabled`, `btn-active`) variants listed at the bottom of the page.
-4. **Use the theme generator** — The [Theme Generator](https://daisyui.com/theme-generator/) lets you create a custom color palette and export it as CSS you can drop into your `index.css`.
+1. **Search by component name** - Need a card? Go to the Card page. Need a modal? Search "modal." Each page is self-contained.
+2. **Copy the class list, not the HTML** - daisyUI docs show plain HTML examples, but you're writing JSX. Copy the class names and apply them to your React components.
+3. **Check the "Modifiers" section** - Most components have size (`btn-sm`, `btn-lg`), color (`btn-primary`, `btn-error`), and state (`btn-disabled`, `btn-active`) variants listed at the bottom of the page.
+4. **Use the theme generator** - The [Theme Generator](https://daisyui.com/theme-generator/) lets you create a custom color palette and export it as CSS you can drop into your `index.css`.
 
 ## Make It Your Own 🎨
 
-**Congratulations — you've built a full-stack application from scratch!** You have a working backend, a styled frontend, authentication, tests, and deployment.
+**Congratulations - you've built a full-stack application from scratch!** You have a working backend, a styled frontend, authentication, tests, and deployment.
 
 Now it's time to stop following steps and start creating. This is **your** Dev Log. Make it reflect who you are:
 
-- **Pick a theme** — Try different daisyUI themes (`cyberpunk`, `retro`, `synthwave`, `nord`) or build a custom one with the theme generator. Change the `@plugin "daisyui"` line in your CSS to set a default.
-- **Add your personality** — Change the profile photo, write a real about page, pick colors that feel like you.
-- **Build a feature** — What would make this app more useful to *you*? Markdown support? Image uploads? A dashboard with charts? Search? Dark mode toggle? Go build it.
-- **Break things and fix them** — That's how you learn. You have Git, you have tests, you have everything you need to experiment safely.
+- **Pick a theme** - Try different daisyUI themes (`cyberpunk`, `retro`, `synthwave`, `nord`) or build a custom one with the theme generator. Change the `@plugin "daisyui"` line in your CSS to set a default.
+- **Add your personality** - Change the profile photo, write a real about page, pick colors that feel like you.
+- **Build a feature** - What would make this app more useful to *you*? Markdown support? Image uploads? A dashboard with charts? Search? Dark mode toggle? Go build it.
+- **Break things and fix them** - That's how you learn. You have Git, you have tests, you have everything you need to experiment safely.
 
 The 24 steps got you here. What you build next is up to you. Ship something you're proud of. 🚀
 

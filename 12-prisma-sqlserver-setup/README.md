@@ -1,4 +1,4 @@
-# Step 12 — Prisma + SQL Server Setup
+# Step 12 - Prisma + SQL Server Setup
 
 ## Goal
 
@@ -69,7 +69,7 @@ CORS_ORIGIN=http://localhost:5173
 DATABASE_URL="sqlserver://localhost:1433;database=icstarsdevlog;user=devlog_user;password=YOUR_REAL_PASSWORD;encrypt=true;trustServerCertificate=true"
 ```
 
-> **Never commit `.env`** — it contains secrets. Only `.env.example` (with
+> **Never commit `.env`** - it contains secrets. Only `.env.example` (with
 > placeholders) goes into Git.
 
 ### 5. Define the `Entry` model
@@ -98,7 +98,7 @@ model Entry {
 ```
 
 **Why `NVarChar`?** SQL Server uses `NVarChar` for Unicode text. Prisma maps
-`String` to `NVarChar(1000)` by default — we override with explicit lengths for
+`String` to `NVarChar(1000)` by default - we override with explicit lengths for
 clarity.
 
 **Why store tags as a string?** Prisma's SQL Server connector does not support
@@ -114,7 +114,7 @@ npx prisma generate
 This reads `schema.prisma` and generates TypeScript types + client into
 `node_modules/@prisma/client`.
 
-### 7. Create the Prisma singleton — `src/lib/prisma.ts`
+### 7. Create the Prisma singleton - `src/lib/prisma.ts`
 
 ```ts
 import { PrismaClient } from '@prisma/client'
@@ -211,7 +211,7 @@ Prisma will:
 
 > **Why `db push` instead of `migrate dev`?** `prisma migrate dev` requires
 > CREATE DATABASE permission (for a shadow database). If your SQL login has that
-> permission, you can use migrations instead — they are better for production
+> permission, you can use migrations instead - they are better for production
 > workflows. For local dev learning, `db push` is simpler.
 
 ### 11. Verify
@@ -247,11 +247,11 @@ npm run db:studio
 ├── package.json            ← adds @prisma/client + prisma + db:* scripts
 ├── tsconfig.json
 ├── prisma/
-│   └── schema.prisma       ← NEW — Entry model, SQL Server provider
+│   └── schema.prisma       ← NEW - Entry model, SQL Server provider
 └── src/
-    ├── index.ts            ← UPDATED — imports prisma, guards DATABASE_URL, /ready
+    ├── index.ts            ← UPDATED - imports prisma, guards DATABASE_URL, /ready
     └── lib/
-        └── prisma.ts       ← NEW — PrismaClient singleton
+        └── prisma.ts       ← NEW - PrismaClient singleton
 ```
 
 ## Hints
@@ -259,7 +259,7 @@ npm run db:studio
 <details>
 <summary>How do I get SQL Server running locally?</summary>
 
-**Option A — Docker (recommended):**
+**Option A - Docker (recommended):**
 
 ```bash
 docker run -e "ACCEPT_EULA=Y" -e "SA_PASSWORD=YourStr0ng!Pass" \
@@ -269,7 +269,7 @@ docker run -e "ACCEPT_EULA=Y" -e "SA_PASSWORD=YourStr0ng!Pass" \
 
 Then create the database and user with `sqlcmd` or Azure Data Studio.
 
-**Option B — SQL Server Express:** Download the free Express edition from
+**Option B - SQL Server Express:** Download the free Express edition from
 Microsoft's site and install it with the default instance.
 
 </details>
@@ -296,7 +296,7 @@ sqlserver://localhost:1433;database=icstarsdevlog;user=devlog_user;password=...;
 <summary>Why a singleton for PrismaClient?</summary>
 
 Each `new PrismaClient()` opens a connection pool. In development, `tsx watch`
-restarts the module on every save — without the singleton, you would leak
+restarts the module on every save - without the singleton, you would leak
 connections until the database refuses new ones. Storing the instance on
 `globalThis` keeps a single pool alive across reloads.
 
@@ -306,10 +306,10 @@ connections until the database refuses new ones. Storing the instance on
 <summary>What if <code>prisma db push</code> fails?</summary>
 
 Common causes:
-- **SQL Server not running** — start the service or Docker container
-- **Wrong password** — double-check `DATABASE_URL` in `.env`
-- **Database doesn't exist** — create it first: `CREATE DATABASE icstarsdevlog;`
-- **Firewall** — make sure port 1433 is open on localhost
+- **SQL Server not running** - start the service or Docker container
+- **Wrong password** - double-check `DATABASE_URL` in `.env`
+- **Database doesn't exist** - create it first: `CREATE DATABASE icstarsdevlog;`
+- **Firewall** - make sure port 1433 is open on localhost
 
 </details>
 

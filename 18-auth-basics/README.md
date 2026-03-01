@@ -1,4 +1,4 @@
-# Step 18 — Auth Basics
+# Step 18 - Auth Basics
 
 ## Goal
 
@@ -70,24 +70,24 @@ npm run dev
 
 ### Backend
 
-1. **User model** — `id`, `username` (unique), `password` (hashed), `createdAt`, plus a relation to entries.
-2. **POST /api/auth/register** — Validates input, hashes the password with `bcrypt` (10 salt rounds), creates the user, and returns a JWT (24 h expiry).
-3. **POST /api/auth/login** — Looks up the user, compares the password with `bcrypt.compare`, and returns a JWT.
-4. **GET /api/auth/me** — Verifies the token from the `Authorization` header and returns the user info. Used by the frontend to restore sessions on page reload.
-5. **`requireAuth` middleware** — Reads `Authorization: Bearer <token>`, verifies with `jwt.verify`, and attaches `req.user` (`userId`, `username`). Applied to POST/PUT/DELETE entry routes.
+1. **User model** - `id`, `username` (unique), `password` (hashed), `createdAt`, plus a relation to entries.
+2. **POST /api/auth/register** - Validates input, hashes the password with `bcrypt` (10 salt rounds), creates the user, and returns a JWT (24 h expiry).
+3. **POST /api/auth/login** - Looks up the user, compares the password with `bcrypt.compare`, and returns a JWT.
+4. **GET /api/auth/me** - Verifies the token from the `Authorization` header and returns the user info. Used by the frontend to restore sessions on page reload.
+5. **`requireAuth` middleware** - Reads `Authorization: Bearer <token>`, verifies with `jwt.verify`, and attaches `req.user` (`userId`, `username`). Applied to POST/PUT/DELETE entry routes.
 
 ### Frontend
 
-1. **`AuthContext`** — Stores `user`, `token`, `loading` in React state. Persists the token in `localStorage`. On mount, calls `/api/auth/me` to restore the session.
-2. **`LoginPage`** — Toggles between Login and Register mode. On success, calls `setAuth(user, token)` and navigates to `/entries`.
-3. **`RequireAuth`** — A wrapper component that redirects to `/login` if the user isn't authenticated.
-4. **`entries.ts` API** — `createEntry`, `updateEntry`, `deleteEntry` now accept a `token` parameter and send it as `Authorization: Bearer <token>`.
-5. **`Header`** — When logged in, shows the username and a Log Out button. When not logged in, shows a Log In link and hides "New Entry".
-6. **`EntryCard`** — Edit/Delete only render when `onDelete` is provided (the entries list page only passes `onDelete` when a user is logged in).
+1. **`AuthContext`** - Stores `user`, `token`, `loading` in React state. Persists the token in `localStorage`. On mount, calls `/api/auth/me` to restore the session.
+2. **`LoginPage`** - Toggles between Login and Register mode. On success, calls `setAuth(user, token)` and navigates to `/entries`.
+3. **`RequireAuth`** - A wrapper component that redirects to `/login` if the user isn't authenticated.
+4. **`entries.ts` API** - `createEntry`, `updateEntry`, `deleteEntry` now accept a `token` parameter and send it as `Authorization: Bearer <token>`.
+5. **`Header`** - When logged in, shows the username and a Log Out button. When not logged in, shows a Log In link and hides "New Entry".
+6. **`EntryCard`** - Edit/Delete only render when `onDelete` is provided (the entries list page only passes `onDelete` when a user is logged in).
 
 ## ✅ Do
 
-- Use `bcrypt` for password hashing — **never** store plain-text passwords
+- Use `bcrypt` for password hashing - **never** store plain-text passwords
 - Keep JWT secrets in `.env`, never in source code
 - Set a reasonable token expiry (we use 24 hours)
 - Make read endpoints public so anyone can browse entries
@@ -105,7 +105,7 @@ npm run dev
 2. Click **Log In** in the header
 3. Register a new account → you should be redirected to `/entries`
 4. The header should show your username and a **Log Out** button
-5. Create a new entry — it should save successfully
-6. Edit and delete entries — both should work
+5. Create a new entry - it should save successfully
+6. Edit and delete entries - both should work
 7. Click **Log Out** → "New Entry" disappears from the nav, Edit/Delete buttons vanish from cards
 8. Try navigating to `/#/entries/new` while logged out → you should be redirected to `/login`
