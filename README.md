@@ -1,10 +1,10 @@
 # DevLog — Learn Full-Stack Web Development Step by Step
 
-A hands-on tutorial that teaches interns how to build a **Dev Log** application from scratch using the **SERN stack** (SQL Server, Express, React, Node). Each step lives in its own folder with a working app and a beginner-friendly README.
+A hands-on tutorial that guides interns how to build a **Dev Log** application from scratch using the **SERN stack** (SQL Server, Express, React, Node). Each step lives in its own folder with a working app and a beginner-friendly README.
 
 ## Who This Is For
 
-- Software engineering interns starting their first web project
+- i.c.Stars interns starting their first web project
 - Self-taught developers learning React and full-stack basics
 - Anyone who prefers **small, incremental steps** over giant boilerplate tutorials
 
@@ -57,6 +57,8 @@ Each folder is a self-contained step. Work through them in order:
 | 20 | `20-deploy-frontend-gh-pages` | Vite build + GitHub Pages deploy |
 | 21 | `21-testing-and-ci` | Vitest + RTL + GitHub Actions |
 | 22 | `22-a11y-and-polish` | Accessibility, polish, retrospective |
+| 23 | `23-tailwind-daisyui-setup` | Install Tailwind CSS v4 + daisyUI; restyle layout shell |
+| 24 | `24-daisyui-components` | Restyle all inner components with daisyUI classes |
 
 ### Compare steps
 
@@ -92,6 +94,7 @@ Or in VS Code, right-click two files and choose **Compare Selected**.
 | Layer | Technology |
 |---|---|
 | Frontend | React 19 + TypeScript, Vite 7 |
+| Styling | Tailwind CSS 4, daisyUI 5 |
 | Routing | React Router (HashRouter → BrowserRouter) |
 | Backend | Node.js, Express |
 | Database | SQL Server (MSSQL), Prisma ORM |

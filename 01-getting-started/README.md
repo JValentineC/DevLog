@@ -23,30 +23,25 @@ Scaffold a **React + TypeScript** app using **Vite** and confirm it runs locally
 
 ### 1. Scaffold the project
 
-```bash
+
 npm create vite@latest devlog-01 -- --template react-ts
-```
+
 
 > **What just happened?** `npm create vite@latest` downloads the latest Vite scaffolding tool. The `-- --template react-ts` flag tells it to use React with TypeScript out of the box.
 
 ### 2. Install dependencies
 
-```bash
 cd devlog-01
 npm install
-```
 
 ### 3. Start the dev server
 
-```bash
 npm run dev
-```
 
 Open the URL printed in your terminal (usually **http://localhost:5173**). You should see the Vite + React logos and a counter button.
 
 ### 4. Explore the file tree
 
-```
 devlog-01/
 ├── index.html            ← Single-page shell; Vite injects your app here
 ├── package.json          ← Project metadata and scripts
@@ -65,15 +60,14 @@ devlog-01/
     ├── vite-env.d.ts     ← Type declarations for Vite client features
     └── assets/
         └── react.svg     ← Imported as a module (gets hashed filename in build)
-```
 
 ### 5. Try HMR
 
 Open `src/App.tsx` in your editor. Change the text inside the `<h1>` tag to something like:
 
-```tsx
+
 <h1>DevLog</h1>
-```
+
 
 Save the file. The browser updates **instantly** without a full page reload — that's Hot Module Replacement.
 
@@ -87,12 +81,21 @@ Save the file. The browser updates **instantly** without a full page reload — 
 
 ## Do ✅ / Don't ❌
 
-| ✅ Do | ❌ Don't |
-|---|---|
-| Run `npm run dev` and confirm the counter works. | Rename or delete files randomly — we'll clean up in Step 02. |
-| Commit your work: `feat(step-01): scaffold vite react-ts app`. | Install CSS frameworks or extra libraries yet. |
-| Read through every generated file to build familiarity. | Worry about understanding every TypeScript compiler option right now. |
-| Keep the terminal open — Vite watches for changes automatically. | Edit `tsconfig` files unless you know what you're changing. |
+| ✅ Do                                           |                                                                    |
+|---                                                 |                                                                            ---|
+| Run `npm run dev` and confirm the counter works.           |      
+| Commit your work: `feat(step-01): scaffold vite react-ts app`. |              
+| Read through every generated file to build familiarity. |   
+| Keep the terminal open — Vite watches for changes automatically. |    
+
+   ❌ Don't 
+
+  Rename or delete files randomly — we'll clean up in Step 02. |
+     Install CSS frameworks or extra libraries yet. |
+  Worry about understanding every TypeScript compiler option right now. |
+    Edit `tsconfig` files unless you know what you're changing. |
+
+
 
 ## Check Your Work
 
