@@ -66,11 +66,19 @@ GitHub Pages hosts your site at `https://<user>.github.io/<repo>/`. Vite needs t
 In `vite.config.ts`:
 
 ```ts
-export default defineConfig({
-  base: process.env.VITE_BASE ?? '/',
-  // ...
+import { defineConfig, loadEnv } from 'vite'
+
+export default defineConfig(({ mode }) => {
+  const env = loadEnv(mode, process.cwd(), '')
+
+  return {
+    base: env.VITE_BASE ?? '/',
+    // ...
+  }
 })
 ```
+
+> **Why `loadEnv`?** Vite's `.env.*` files aren't loaded into `process.env` — they're only available via `import.meta.env` in source code. The config file runs in Node before that happens, so we use Vite's `loadEnv` helper to read `.env.production` ourselves.
 
 - **Local dev**: `VITE_BASE` is not set → falls back to `'/'`
 - **Production build**: Set `VITE_BASE=/DevLog/` in `.env.production`
