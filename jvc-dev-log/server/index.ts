@@ -2,7 +2,7 @@ import 'dotenv/config'
 import path from 'node:path'
 import { fileURLToPath } from 'node:url'
 import express from 'express'
-import { prisma } from './lib/prisma.js'
+import { pool } from './lib/db.js'
 import app from './app.js'
 
 // --- Startup guard -------------------------------------------
@@ -26,7 +26,10 @@ if (IS_PROD) {
   app.use(express.static(clientDist))
 
   // SPA fallback — let React Router handle client-side routes
-  app.get('*', (_req, res) => {
+  // Only serve index.html for requests without a file extension
+  // (so .js, .css, .ico, .jpg etc. get a proper 404 instead of HTML)
+  app.get('/{*splat}', (_req, res, next) => {
+    if (_req.path.includes('.')) return next()
     res.sendFile(path.join(clientDist, 'index.html'))
   })
 }
@@ -44,8 +47,8 @@ const server = app.listen(PORT, () => {
 function shutdown() {
   console.log('\n🛑  Shutting down gracefully…')
   server.close(async () => {
-    await prisma.$disconnect()
-    console.log('   Prisma disconnected. Bye!')
+    await pool.end()
+    console.log('   Database pool closed. Bye!')
     process.exit(0)
   })
 }

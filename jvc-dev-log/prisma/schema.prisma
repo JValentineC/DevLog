@@ -3,14 +3,14 @@ generator client {
 }
 
 datasource db {
-  provider = "sqlserver"
-  url      = env("DATABASE_URL")
+  provider = "mysql"             // <-- switch from "sqlserver" to "mysql"
+  url      = env("DATABASE_URL") // keep reading from env
 }
 
 model User {
   id        Int      @id @default(autoincrement())
-  username  String   @unique @db.NVarChar(100)
-  password  String   @db.NVarChar(255)
+  username  String   @unique @db.VarChar(100)
+  password  String   @db.VarChar(255)
   createdAt DateTime @default(now())
 
   entries Entry[]
@@ -18,10 +18,10 @@ model User {
 
 model Entry {
   id        Int      @id @default(autoincrement())
-  title     String   @db.NVarChar(255)
-  summary   String   @db.NVarChar(4000)
-  mood      String   @db.NVarChar(50)
-  tags      String   @default("") @db.NVarChar(500)
+  title     String   @db.VarChar(255)
+  summary   String   @db.Text
+  mood      String   @db.VarChar(50)
+  tags      String   @default("") @db.VarChar(500)
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 

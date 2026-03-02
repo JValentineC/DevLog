@@ -69,6 +69,8 @@ Each folder is a self-contained step. Work through them in order:
 | 22 | `22-a11y-and-polish` | Accessibility, polish, retrospective |
 | 23 | `23-tailwind-daisyui-setup` | Install Tailwind CSS v4 + daisyUI; restyle layout shell |
 | 24 | `24-daisyui-components` | Restyle all inner components with daisyUI classes |
+| 25 | `25-prisma-mysql-migration` | Switch Prisma from SQL Server to MySQL / MariaDB |
+| 26 | `26-deploy-backend-nfsn` | Deploy Express API to NearlyFreeSpeech.NET |
 
 ### Compare steps
 

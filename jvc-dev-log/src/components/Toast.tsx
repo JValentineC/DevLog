@@ -17,13 +17,13 @@ function Toast({ toasts, onDismiss }: ToastProps) {
 
   return (
     <div className="toast toast-end toast-top z-50">
-      {/* Success toasts: polite — announced after current speech */}
+      {/* Success toasts: polite - announced after current speech */}
       <div role="status" aria-live="polite">
         {successToasts.map((toast) => (
           <ToastItem key={toast.id} toast={toast} onDismiss={onDismiss} />
         ))}
       </div>
-      {/* Error toasts: assertive — interrupt current speech */}
+      {/* Error toasts: assertive - interrupt current speech */}
       <div role="alert" aria-live="assertive">
         {errorToasts.map((toast) => (
           <ToastItem key={toast.id} toast={toast} onDismiss={onDismiss} />
