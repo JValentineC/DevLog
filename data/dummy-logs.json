@@ -268,5 +268,21 @@
     "tags": ["responsive", "hamburger-menu", "navbar", "svg-icons", "mobile"],
     "createdAt": "2026-03-02T12:00:00.000Z",
     "updatedAt": "2026-03-02T12:00:00.000Z"
+  },
+  {
+    "id": 31,
+    "title": "Step 31 – User Registration Tracking & NFSN Deployment Debugging",
+    "summary": "Ugh interns… this one was a BATTLE. We got user registration tracking wired up, but deploying to NearlyFreeSpeech turned into a full-blown debugging marathon. Five stacked issues: Prisma trying to build FreeBSD binaries (we don't even use Prisma anymore!), Windows CRLF line endings breaking the shell script, scp creating directories with 700 permissions so the daemon user couldn't read them, the .env file sitting in /home/private where the daemon can't reach, and the daemon running as the wrong user. Five layers of pain. But we found every single one with a debug wrapper script and fixed them all. The backend is LIVE and registration works. Lesson: deployment bugs stack up — solve them one at a time, log everything, and never trust file permissions from Windows. Why did the DevOps engineer bring a ladder to work? Because the deployment had too many layers! Keep coding, keep reading ~jv",
+    "mood": "frustrated",
+    "tags": [
+      "nfsn",
+      "deployment",
+      "debugging",
+      "permissions",
+      "freebsd",
+      "registration"
+    ],
+    "createdAt": "2026-03-02T22:00:00.000Z",
+    "updatedAt": "2026-03-02T22:00:00.000Z"
   }
 ]
