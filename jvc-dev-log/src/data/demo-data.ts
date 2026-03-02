@@ -107,7 +107,7 @@ export const DemoData = {
 
     // Sort
     const sort = params.sort ?? "createdAt";
-    const order = params.order ?? "desc";
+    const order = params.order ?? "asc";
     logs = [...logs].sort((a, b) => {
       const aVal = (a as unknown as Record<string, unknown>)[sort];
       const bVal = (b as unknown as Record<string, unknown>)[sort];
