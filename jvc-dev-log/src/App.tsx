@@ -74,7 +74,7 @@ function Home() {
           <p className="mt-3">Facilitators can teach directly from the READMEs or fork/extend the examples for deeper dives.</p>
           <p className="mt-3">
             View the full curriculum on GitHub:{' '}
-            <a href="https://github.com/JValentineC/DevLog" target="_blank" rel="noopener noreferrer" className="link link-primary font-semibold">github.com/JValentineC/DevLog</a>
+            <a href="https://github.com/JValentineC/fullstack-step-by-step" target="_blank" rel="noopener noreferrer" className="link link-primary font-semibold">github.com/JValentineC/fullstack-step-by-step</a>
           </p>
         </section>
       </main>

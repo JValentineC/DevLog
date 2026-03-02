@@ -11,7 +11,7 @@ export default defineConfig(({ mode }) => {
     plugins: [react(), tailwindcss()],
 
     // For GitHub Pages the app lives at https://<user>.github.io/<repo>/
-    // Set VITE_BASE in .env.production to "/<repo>/" (e.g. "/DevLog/").
+    // Set VITE_BASE in .env.production to "/<repo>/" (e.g. "/fullstack-step-by-step/").
     // Falls back to "/" for local development.
     base: env.VITE_BASE ?? '/',
 

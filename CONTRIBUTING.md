@@ -1,4 +1,4 @@
-# Contributing to DevLog
+# Contributing to fullstack-step-by-step
 
 Thanks for your interest in improving this tutorial! Here's how to help.
 

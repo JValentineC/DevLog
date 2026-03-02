@@ -49,7 +49,7 @@ function AboutSection() {
         </p>
         <p className="mb-4">
           Explore the full curriculum:{' '}
-          <a href="https://github.com/JValentineC/DevLog" target="_blank" rel="noopener noreferrer" className="link link-primary font-semibold">github.com/JValentineC/DevLog</a>
+          <a href="https://github.com/JValentineC/fullstack-step-by-step" target="_blank" rel="noopener noreferrer" className="link link-primary font-semibold">github.com/JValentineC/fullstack-step-by-step</a>
         </p>
         <p className="font-semibold">Let&apos;s build the habit of shipping - together. 🚀</p>
       </section>

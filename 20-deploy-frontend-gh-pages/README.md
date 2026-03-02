@@ -56,7 +56,7 @@ npx prisma generate
 
 GitHub Pages serves **static files** - there's no Node.js server. Your React app needs to:
 
-- Know its own URL path (e.g. `https://jvalentinec.github.io/DevLog/`)
+- Know its own URL path (e.g. `https://jvalentinec.github.io/fullstack-step-by-step/`)
 - Know where the API lives (e.g. `https://your-backend.example.com`)
 
 We solve both with **environment variables** that Vite bakes into the build.
@@ -83,7 +83,7 @@ export default defineConfig(({ mode }) => {
 > **Why `loadEnv`?** Vite's `.env.*` files aren't loaded into `process.env` - they're only available via `import.meta.env` in source code. The config file runs in Node before that happens, so we use Vite's `loadEnv` helper to read `.env.production` ourselves.
 
 - **Local dev**: `VITE_BASE` is not set → falls back to `'/'`
-- **Production build**: Set `VITE_BASE=/DevLog/` in `.env.production`
+- **Production build**: Set `VITE_BASE=/fullstack-step-by-step/` in `.env.production`
 
 ### 3. Make API calls configurable
 
@@ -121,7 +121,7 @@ cp .env.production.example .env.production
 ```
 
 ```env
-VITE_BASE=/DevLog/
+VITE_BASE=/fullstack-step-by-step/
 VITE_API_URL=https://your-backend.example.com
 ```
 
@@ -129,13 +129,13 @@ VITE_API_URL=https://your-backend.example.com
 
 ### 6. Why HashRouter?
 
-GitHub Pages doesn't have a server to handle SPA fallback routing. With `BrowserRouter`, visiting `https://user.github.io/DevLog/entries` directly would return a 404.
+GitHub Pages doesn't have a server to handle SPA fallback routing. With `BrowserRouter`, visiting `https://user.github.io/fullstack-step-by-step/entries` directly would return a 404.
 
 `HashRouter` puts routes after `#`, so all URLs load `index.html`:
 
 ```
-https://jvalentinec.github.io/DevLog/#/entries       ✅ works
-https://jvalentinec.github.io/DevLog/entries          ❌ 404
+https://jvalentinec.github.io/fullstack-step-by-step/#/entries       ✅ works
+https://jvalentinec.github.io/fullstack-step-by-step/entries          ❌ 404
 ```
 
 We've been using `HashRouter` since Step 04 - no changes needed.
@@ -208,7 +208,7 @@ Without this, the browser will block API requests from the frontend.
 - Don't forget the `VITE_` prefix on env vars - they won't be available without it
 - Don't use `BrowserRouter` with GitHub Pages (no server-side fallback)
 - Don't set `CORS_ORIGIN` to `*` in production
-- Don't hardcode `base: '/DevLog/'` in `vite.config.ts` - use the env var so it's flexible
+- Don't hardcode `base: '/fullstack-step-by-step/'` in `vite.config.ts` - use the env var so it's flexible
 - Don't commit `.env.production` with real backend URLs to public repos
 - Don't use absolute paths like `"/profile.jpg"` - they ignore the base path
 
