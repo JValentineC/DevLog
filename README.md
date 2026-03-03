@@ -77,6 +77,19 @@ Each folder is a self-contained step. Work through them in order:
 | 28  | `28-demo-credentials-login`     | Show sample credentials on the login page in demo mode        |
 | 29  | `29-accordion-entries-sort`     | Accordion entry cards + oldest-first default sort             |
 | 30  | `30-responsive-navbar`          | Responsive navbar: desktop text links, mobile hamburger menu  |
+| 31  | `31-show-entry-author`          | JOIN User on entry queries, display author name               |
+| 32  | `32-add-email-to-user`          | Add email column to User table, update registration           |
+| 33  | `33-email-verification-backend` | Verification codes, Nodemailer, confirm before active         |
+| 34  | `34-email-verification-frontend`| Two-phase registration UI, code entry form                    |
+| 35  | `35-add-user-roles`             | Add role column (user/admin), seed admin account              |
+| 36  | `36-admin-middleware-stats-api`  | requireAdmin middleware, GET /api/admin/stats                  |
+| 37  | `37-admin-dashboard-stats-ui`   | Admin dashboard page with stat cards and charts               |
+| 38  | `38-user-management-api`        | Admin user list, role changes, disable/enable                 |
+| 39  | `39-user-management-ui`         | Users table on admin dashboard                                |
+| 40  | `40-activity-log-backend`       | ActivityLog table, auto-log actions, admin query              |
+| 41  | `41-activity-log-ui`            | Activity feed panel on admin dashboard                        |
+| 42  | `42-content-moderation-backend` | Admin CRUD on all entries, flag system                        |
+| 43  | `43-content-moderation-ui`      | Moderation tab on admin dashboard                             |
 
 ### Compare steps
 

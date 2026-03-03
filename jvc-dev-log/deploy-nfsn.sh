@@ -14,44 +14,35 @@ NFSN_SITE_DIR="/home/public"
 NFSN_PRIVATE_DIR="/home/private"
 
 # ── Build locally ─────────────────────────────────────
-echo "1/5  Building frontend..."
-npm run build
+# Override VITE_BASE so assets are served from / (not /fullstack-step-by-step/)
+# and clear VITE_API_URL so the frontend calls /api on the same origin.
+# MSYS_NO_PATHCONV prevents Git Bash from converting "/" to "C:\Program Files\Git\"
+echo "1/4  Building frontend..."
+MSYS_NO_PATHCONV=1 VITE_BASE=/ VITE_API_URL= npm run build
 
-echo "2/5  Building server..."
+echo "2/4  Building server..."
 npm run build:server
 
-echo "3/5  Generating Prisma client..."
-npx prisma generate
-
 # ── Upload to NFSN ────────────────────────────────────
-echo "4/5  Uploading files to NFSN..."
+echo "3/4  Uploading files to NFSN..."
 
-# Sync the built server code
-rsync -avz --delete dist-server/ "$NFSN_USER@$NFSN_SSH_HOST:$NFSN_SITE_DIR/dist-server/"
+# Upload the built server code
+scp -r dist-server "$NFSN_USER@$NFSN_SSH_HOST:$NFSN_SITE_DIR/"
 
-# Sync the built frontend
-rsync -avz --delete dist/ "$NFSN_USER@$NFSN_SSH_HOST:$NFSN_SITE_DIR/dist/"
+# Upload the built frontend
+scp -r dist "$NFSN_USER@$NFSN_SSH_HOST:$NFSN_SITE_DIR/"
 
-# Sync package.json + lock file (for npm install on server)
-rsync -avz package.json package-lock.json "$NFSN_USER@$NFSN_SSH_HOST:$NFSN_SITE_DIR/"
-
-# Sync Prisma schema (needed for prisma generate on server)
-rsync -avz prisma/ "$NFSN_USER@$NFSN_SSH_HOST:$NFSN_SITE_DIR/prisma/"
-
-# Sync the daemon startup script
-rsync -avz run.sh "$NFSN_USER@$NFSN_SSH_HOST:$NFSN_SITE_DIR/run.sh"
+# Upload package.json + lock file (for npm install on server)
+scp package.json package-lock.json "$NFSN_USER@$NFSN_SSH_HOST:$NFSN_SITE_DIR/"
 
 # ── Install production deps on NFSN ──────────────────
-echo "5/5  Installing production dependencies on NFSN..."
+echo "4/4  Installing production dependencies on NFSN..."
 ssh "$NFSN_USER@$NFSN_SSH_HOST" << 'EOF'
   cd /home/public
   npm install --omit=dev
-  npx prisma generate
-  chmod +x run.sh
 EOF
 
 echo ""
 echo "Deploy complete!"
-echo "  - Set env vars in $NFSN_PRIVATE_DIR/.env on the server"
-echo "  - Enable the daemon in your NFSN site panel"
-echo "  - Test: curl https://your-site.nfshost.com/api/health"
+echo "  - Restart the daemon in the NFSN site panel"
+echo "  - Test: curl https://icstarslog.nfshost.com/api/health"

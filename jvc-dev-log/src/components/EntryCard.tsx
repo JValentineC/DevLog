@@ -23,6 +23,7 @@ function EntryCard({ entry, onDelete, onTagClick }: EntryCardProps) {
           <time dateTime={entry.createdAt}>
             {new Date(entry.createdAt).toLocaleDateString()}
           </time>
+          {entry.author && <>{' · '}<span>by {entry.author}</span></>}
           {" · "}
           <span className="badge badge-outline badge-xs">{entry.mood}</span>
         </span>

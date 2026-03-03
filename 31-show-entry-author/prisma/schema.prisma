@@ -1,0 +1,41 @@
+// Prisma schema for DevLog - MySQL / MariaDB
+// Docs: https://www.prisma.io/docs/orm/overview/databases/mysql
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id        Int      @id @default(autoincrement())
+  username  String   @unique @db.VarChar(100)
+  password  String   @db.VarChar(255)
+  createdAt DateTime @default(now())
+
+  entries Entry[]
+}
+
+model Entry {
+  id        Int      @id @default(autoincrement())
+  title     String   @db.VarChar(255)
+  summary   String   @db.Text
+  mood      String   @db.VarChar(50)
+  tags      String   @default("") @db.VarChar(500)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  userId Int?
+  user   User? @relation(fields: [userId], references: [id])
+
+  @@index([tags], name: "idx_entry_tags")
+  @@index([createdAt], name: "idx_entry_created")
+  @@index([userId], name: "idx_entry_user")
+
+  @@index([tags], name: "idx_entry_tags")
+  @@index([createdAt], name: "idx_entry_created")
+  @@index([userId], name: "idx_entry_user")
+}

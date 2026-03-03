@@ -12,7 +12,6 @@ const entry: Entry = {
   tags: ['react', 'testing'],
   createdAt: '2026-01-15T12:00:00Z',
   updatedAt: '2026-01-15T12:00:00Z',
-  author: 'testuser',
 }
 
 function renderCard(props: { onDelete?: (id: number) => void; onTagClick?: (tag: string) => void } = {}) {

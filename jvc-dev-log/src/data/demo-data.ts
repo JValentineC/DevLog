@@ -60,8 +60,8 @@ async function loadLogs(): Promise<Entry[]> {
 
   // 3. Merge: local entries override seeds with the same id
   const merged = new Map<number, Entry>();
-  for (const e of seed) merged.set(e.id, e);
-  for (const e of local) merged.set(e.id, e);
+  for (const e of seed) merged.set(e.id, { ...e, author: e.author ?? null });
+  for (const e of local) merged.set(e.id, { ...e, author: e.author ?? null });
 
   logsCache = Array.from(merged.values()).sort(
     (a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime(),
@@ -153,6 +153,8 @@ export const DemoData = {
     const logs = await loadLogs();
     const maxId = logs.reduce((max, e) => Math.max(max, e.id), 0);
     const now = new Date().toISOString();
+    const auth = localStorage.getItem(AUTH_KEY);
+    const username = auth ? JSON.parse(auth).username : null;
     const entry: Entry = {
       id: maxId + 1,
       title: body.title,
@@ -166,6 +168,7 @@ export const DemoData = {
         : [],
       createdAt: now,
       updatedAt: now,
+      author: username,
     };
     logs.unshift(entry);
     persistLogs(logs);
@@ -191,6 +194,7 @@ export const DemoData = {
             .filter(Boolean)
         : [],
       updatedAt: new Date().toISOString(),
+      author: logs[idx].author,
     };
     logs[idx] = updated;
     persistLogs(logs);
