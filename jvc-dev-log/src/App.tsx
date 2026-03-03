@@ -112,7 +112,57 @@ function Home() {
               routing for static hosting, environment variables, health checks,
               and clear commit messages.
             </li>
+            <li>
+              <strong>A testing curriculum</strong> - Every step has a companion
+              test folder with educational READMEs and test scripts that teach
+              TDD, regression testing, and modern QA practices from the ground
+              up.
+            </li>
           </ul>
+        </section>
+
+        <section>
+          <h3 className="text-2xl font-semibold mb-3">
+            Testing &amp; TDD - Built In From Step 1
+          </h3>
+          <p className="mb-3">
+            Each step includes a <code>tests/</code> folder with a README that
+            introduces a new testing concept and (where applicable) a working
+            test script. You&apos;ll learn:
+          </p>
+          <ul className="list-disc list-inside space-y-1 ml-2">
+            <li>
+              <strong>TDD (Test-Driven Development)</strong> - Write a failing
+              test first, make it pass, then refactor. You&apos;ll practice the
+              Red-Green-Refactor cycle starting in Step 8.
+            </li>
+            <li>
+              <strong>Regression testing</strong> - Run your full suite after
+              every change to catch bugs before they ship.
+            </li>
+            <li>
+              <strong>Frontend testing</strong> - Vitest + React Testing Library
+              + userEvent for component rendering, user interactions, routing,
+              and async data fetching.
+            </li>
+            <li>
+              <strong>Backend testing</strong> - supertest for Express API
+              endpoints, mocking Prisma, and testing auth flows.
+            </li>
+            <li>
+              <strong>Accessibility testing</strong> - ARIA attributes, skip
+              links, live regions, keyboard navigation.
+            </li>
+            <li>
+              <strong>Security testing</strong> - Password hash leak prevention,
+              JWT validation, protected routes, public vs private data.
+            </li>
+          </ul>
+          <p className="mt-3">
+            By the end, you&apos;ll have written tests at every layer of the
+            stack - from simple &quot;does it render?&quot; checks to full CRUD
+            API test suites with auth, pagination, and privacy rules.
+          </p>
         </section>
 
         <section>

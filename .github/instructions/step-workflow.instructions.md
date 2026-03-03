@@ -40,7 +40,27 @@ If the step adds or changes data shapes:
 2. The step folder contains **only the diff** — files the learner would modify — plus structural files (`package.json`, configs, `index.html`). **Do not include dummy data files** (`dummy-logs.json`, `dummy-users.json`) or `demo-data.ts`.
 3. **Write the step README** following the standard template.
 
-## Phase 4 — Deploy GitHub Pages
+## Phase 4 — Create Test Folder
+
+Every step gets a corresponding test folder at `tests/NN-step-name/`.
+
+1. **Create `tests/NN-step-name/README.md`** — educational README covering:
+   - New testing concept introduced in this step
+   - Code examples showing how to test the step's features
+   - A manual QA checklist table
+   - A "What's Next" pointer to the next step
+2. **Create a test script** (if the step has testable code):
+   - Frontend steps: `*.test.tsx` using Vitest + @testing-library/react + userEvent
+   - Backend steps: `*.test.ts` using Vitest + supertest
+   - Config/deployment/styling-only steps: README only (no test script)
+3. **Style rules for test READMEs:**
+   - No emojis or Unicode symbols — use plain text (Yes/No, [x]/[ ])
+   - No em dashes — use `--` instead
+   - No Unicode arrows — use `->`, `<-`, `<->` instead
+   - Heavily commented test code to walk interns through each concept
+4. **Test scripts should include educational comments** explaining testing patterns, assertions, and why each test matters.
+
+## Phase 5 — Deploy GitHub Pages
 
 ```powershell
 cd C:\Users\JonathanRamirez\Documents\Applications\DevLog\jvc-dev-log
@@ -54,7 +74,7 @@ This builds with `.env.production` (no `VITE_API_URL` → demo mode) and publish
 > & "C:\Program Files\Git\bin\bash.exe" deploy-nfsn.sh
 > ```
 
-## Phase 5 — Git Commit & Push
+## Phase 6 — Git Commit & Push
 
 ```powershell
 cd C:\Users\JonathanRamirez\Documents\Applications\DevLog

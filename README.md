@@ -4,6 +4,8 @@
 
 A hands-on tutorial that guides interns how to build a **Dev Log** application from scratch using the **SERN stack** (SQL Server, Express, React, Node). Each step lives in its own folder with a working app and a beginner-friendly README.
 
+The curriculum also includes a **progressive testing track** -- every step has a companion folder in `tests/` with educational READMEs and test scripts that teach **TDD (Test-Driven Development)**, regression testing, and modern QA practices from the ground up.
+
 ## Who This Is For
 
 - i.c.Stars interns starting their first web project
@@ -120,11 +122,31 @@ Or in VS Code, right-click two files and choose **Compare Selected**.
 - **Check Your Work** - Verification checklist
 - **Stretch** - Optional challenges
 
+## Testing & TDD Curriculum
+
+Every step folder has a matching `tests/NN-step-name/` folder with:
+
+- **An educational README** introducing a new testing concept with code examples and a manual QA checklist
+- **A working test script** (where applicable) using Vitest, React Testing Library, or supertest
+
+### What the testing track covers
+
+| Steps | Testing Concepts |
+|-------|------------------|
+| 01-05 | First tests, render checks, DOM attributes, routing, unit testing, Testing Pyramid |
+| 06-10 | Test fixtures, user interactions, **TDD Red-Green-Refactor** (Step 8), mock functions, complex inputs |
+| 11-13 | API testing with supertest, mocking Prisma, full CRUD test suites |
+| 14-17 | Mocking fetch, async patterns (waitFor/findBy), parameterized tests (it.each), pagination math |
+| 18-22 | Auth/security testing, deployment verification, CI pipelines, accessibility (a11y) testing |
+| 23-27 | Regression testing after migrations, strategy pattern testing, localStorage mocking |
+| 28-35 | Form testing, responsive UI strategies, SQL JOIN testing, schema migration testing, capstone |
+
 ## Teaching Philosophy
 
 - **One concept at a time** - small wins build confidence
 - **Semantic HTML first** - accessibility from the start
 - **No frameworks early** - styling comes after structure and routing
+- **Testing built in from day one** - TDD, regression testing, and QA practices alongside every feature
 - **Repeatable patterns** - same README format every step
 - **Commit discipline** - one commit per step, message explains the "why"
 
