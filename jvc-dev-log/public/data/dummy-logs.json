@@ -352,5 +352,15 @@
     "createdAt": "2026-03-08T09:00:00.000Z",
     "updatedAt": "2026-03-08T09:00:00.000Z",
     "author": "jv"
+  },
+  {
+    "id": 39,
+    "title": "Step 39 -- Users Directory",
+    "summary": "Hey interns! Step 39 -- we turned the plain users table into a full-blown directory page! There is now a search bar that filters by username, handle, or display name with a debounced query. Each user shows up as a card with their avatar, bio snippet, entry count, and join date. Best part? The friend action buttons are right there on each card -- Add Friend, Pending, or Unfriend -- so you never have to leave the page. Why did the search bar break up with the database? Because it found too many matches! Keep coding, keep reading ~jv",
+    "mood": "happy",
+    "tags": ["users-directory", "search", "friend-actions", "cards"],
+    "createdAt": "2026-03-09T09:00:00.000Z",
+    "updatedAt": "2026-03-09T09:00:00.000Z",
+    "author": "jv"
   }
 ]

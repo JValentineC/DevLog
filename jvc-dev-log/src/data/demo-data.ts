@@ -492,6 +492,48 @@ export const DemoData = {
     }));
   },
 
+  async fetchUserDirectory(
+    search?: string,
+  ): Promise<
+    {
+      id: number;
+      username: string;
+      handle: string;
+      displayName: string | null;
+      bio: string | null;
+      avatarUrl: string | null;
+      createdAt: string;
+      entryCount: number;
+    }[]
+  > {
+    const users = await loadUsers();
+    const logs = await loadLogs();
+
+    let filtered = users;
+    if (search) {
+      const q = search.toLowerCase();
+      filtered = users.filter(
+        (u) =>
+          u.username.toLowerCase().includes(q) ||
+          u.handle.toLowerCase().includes(q) ||
+          (u.displayName && u.displayName.toLowerCase().includes(q)),
+      );
+    }
+
+    return filtered
+      .map((u) => ({
+        id: u.id,
+        username: u.username,
+        handle: u.handle,
+        displayName: u.displayName,
+        bio: u.bio,
+        avatarUrl: u.avatarUrl,
+        createdAt: u.createdAt,
+        entryCount: logs.filter((e) => e.author === u.username).length,
+      }))
+      .sort((a, b) => a.username.localeCompare(b.username));
+  },
+
   /* ---------- friendships ---------------------------------------- */
 
   async sendFriendRequest(targetUserId: number): Promise<DemoFriendship> {
