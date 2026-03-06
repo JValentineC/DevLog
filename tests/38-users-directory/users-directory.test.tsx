@@ -12,10 +12,10 @@
  * - Verifying conditional rendering based on derived state
  */
 
-import { describe, it, expect, vi, beforeEach } from 'vitest';
-import { render, screen, waitFor } from '@testing-library/react';
-import userEvent from '@testing-library/user-event';
-import { MemoryRouter } from 'react-router-dom';
+import { describe, it, expect, vi, beforeEach } from "vitest";
+import { render, screen, waitFor } from "@testing-library/react";
+import userEvent from "@testing-library/user-event";
+import { MemoryRouter } from "react-router-dom";
 
 // ---------- Mock the API modules BEFORE importing the component ----------
 
@@ -27,29 +27,29 @@ const mockFetchFriendships = vi.fn();
 const mockSendFriendRequest = vi.fn();
 const mockDeleteFriendship = vi.fn();
 
-vi.mock('../api/users', () => ({
+vi.mock("../api/users", () => ({
   fetchUserDirectory: (...args: unknown[]) => mockFetchUserDirectory(...args),
 }));
 
-vi.mock('../api/friendships', () => ({
+vi.mock("../api/friendships", () => ({
   fetchFriendships: (...args: unknown[]) => mockFetchFriendships(...args),
   sendFriendRequest: (...args: unknown[]) => mockSendFriendRequest(...args),
   deleteFriendship: (...args: unknown[]) => mockDeleteFriendship(...args),
 }));
 
 // Mock the auth context -- pretend user id=1 is logged in
-vi.mock('../context/AuthContext', () => ({
+vi.mock("../context/AuthContext", () => ({
   useAuth: () => ({
     user: {
       id: 1,
-      username: 'jvc',
-      email: 'jvc@icstars.org',
-      handle: 'jvc',
-      displayName: 'Jonathan',
+      username: "jvc",
+      email: "jvc@icstars.org",
+      handle: "jvc",
+      displayName: "Jonathan",
       bio: null,
       avatarUrl: null,
     },
-    token: 'fake-token-123',
+    token: "fake-token-123",
     loading: false,
     setAuth: vi.fn(),
     logout: vi.fn(),
@@ -57,46 +57,46 @@ vi.mock('../context/AuthContext', () => ({
 }));
 
 // Mock Header and Footer so tests focus on UsersPage logic
-vi.mock('../components/Header', () => ({
+vi.mock("../components/Header", () => ({
   default: () => <header data-testid="header">Header</header>,
 }));
-vi.mock('../components/Footer', () => ({
+vi.mock("../components/Footer", () => ({
   default: () => <footer data-testid="footer">Footer</footer>,
 }));
 
 // NOW import the component under test
-import UsersPage from '../components/UsersPage';
+import UsersPage from "../components/UsersPage";
 
 // Sample data -- two users plus the logged-in user
 const sampleUsers = [
   {
     id: 2,
-    username: 'intern_alex',
-    handle: 'intern-alex',
-    displayName: 'Alex Torres',
-    bio: 'Learning to code!',
+    username: "intern_alex",
+    handle: "intern-alex",
+    displayName: "Alex Torres",
+    bio: "Learning to code!",
     avatarUrl: null,
-    createdAt: '2026-01-06T10:00:00.000Z',
+    createdAt: "2026-01-06T10:00:00.000Z",
     entryCount: 3,
   },
   {
     id: 1,
-    username: 'jvc',
-    handle: 'jvc',
-    displayName: 'Jonathan',
-    bio: 'Tech Fellow',
+    username: "jvc",
+    handle: "jvc",
+    displayName: "Jonathan",
+    bio: "Tech Fellow",
     avatarUrl: null,
-    createdAt: '2026-01-01T00:00:00.000Z',
+    createdAt: "2026-01-01T00:00:00.000Z",
     entryCount: 10,
   },
   {
     id: 3,
-    username: 'intern_maya',
-    handle: 'intern-maya',
-    displayName: 'Maya Johnson',
+    username: "intern_maya",
+    handle: "intern-maya",
+    displayName: "Maya Johnson",
     bio: null,
     avatarUrl: null,
-    createdAt: '2026-01-06T10:00:00.000Z',
+    createdAt: "2026-01-06T10:00:00.000Z",
     entryCount: 1,
   },
 ];
@@ -112,7 +112,7 @@ function renderUsersPage() {
 
 // ---------- Tests ----------
 
-describe('UsersPage', () => {
+describe("UsersPage", () => {
   beforeEach(() => {
     // Reset all mocks before each test so state does not leak
     vi.clearAllMocks();
@@ -122,7 +122,7 @@ describe('UsersPage', () => {
     mockFetchFriendships.mockResolvedValue([]);
   });
 
-  it('renders user cards after loading', async () => {
+  it("renders user cards after loading", async () => {
     // ARRANGE + ACT -- render triggers the useEffect fetch
     renderUsersPage();
 
@@ -131,9 +131,9 @@ describe('UsersPage', () => {
 
     // ASSERT -- wait for the cards to appear
     await waitFor(() => {
-      expect(screen.getByText('Alex Torres')).toBeInTheDocument();
-      expect(screen.getByText('Jonathan')).toBeInTheDocument();
-      expect(screen.getByText('Maya Johnson')).toBeInTheDocument();
+      expect(screen.getByText("Alex Torres")).toBeInTheDocument();
+      expect(screen.getByText("Jonathan")).toBeInTheDocument();
+      expect(screen.getByText("Maya Johnson")).toBeInTheDocument();
     });
 
     // Count badge should say "3 users found"
@@ -144,22 +144,22 @@ describe('UsersPage', () => {
     renderUsersPage();
 
     await waitFor(() => {
-      expect(screen.getByText('Jonathan')).toBeInTheDocument();
+      expect(screen.getByText("Jonathan")).toBeInTheDocument();
     });
 
     // The badge "You" should appear once (for user id=1)
-    expect(screen.getByText('You')).toBeInTheDocument();
+    expect(screen.getByText("You")).toBeInTheDocument();
   });
 
   it('shows "Add Friend" for users with no friendship', async () => {
     renderUsersPage();
 
     await waitFor(() => {
-      expect(screen.getByText('Alex Torres')).toBeInTheDocument();
+      expect(screen.getByText("Alex Torres")).toBeInTheDocument();
     });
 
     // Alex and Maya should each have an "Add Friend" button
-    const addButtons = screen.getAllByRole('button', { name: /add friend/i });
+    const addButtons = screen.getAllByRole("button", { name: /add friend/i });
     expect(addButtons).toHaveLength(2); // Alex + Maya, not jvc (self)
   });
 
@@ -168,11 +168,11 @@ describe('UsersPage', () => {
     mockFetchFriendships.mockResolvedValue([
       {
         id: 99,
-        userAId: 1,  // pair-normalized: min(1,2) = 1
+        userAId: 1, // pair-normalized: min(1,2) = 1
         userBId: 2,
-        status: 'PENDING',
-        createdAt: '2026-03-09T00:00:00.000Z',
-        updatedAt: '2026-03-09T00:00:00.000Z',
+        status: "PENDING",
+        createdAt: "2026-03-09T00:00:00.000Z",
+        updatedAt: "2026-03-09T00:00:00.000Z",
       },
     ]);
 
@@ -183,7 +183,9 @@ describe('UsersPage', () => {
     });
 
     // Maya (id=3) should still show "Add Friend"
-    expect(screen.getByRole('button', { name: /add friend/i })).toBeInTheDocument();
+    expect(
+      screen.getByRole("button", { name: /add friend/i }),
+    ).toBeInTheDocument();
   });
 
   it('shows "Friends -- Unfriend" when friendship is ACCEPTED', async () => {
@@ -192,9 +194,9 @@ describe('UsersPage', () => {
         id: 99,
         userAId: 1,
         userBId: 3,
-        status: 'ACCEPTED',
-        createdAt: '2026-03-09T00:00:00.000Z',
-        updatedAt: '2026-03-09T00:00:00.000Z',
+        status: "ACCEPTED",
+        createdAt: "2026-03-09T00:00:00.000Z",
+        updatedAt: "2026-03-09T00:00:00.000Z",
       },
     ]);
 
@@ -207,24 +209,27 @@ describe('UsersPage', () => {
 
   it('calls sendFriendRequest when "Add Friend" is clicked', async () => {
     mockSendFriendRequest.mockResolvedValue({
-      id: 100, userAId: 1, userBId: 2, status: 'PENDING',
-      createdAt: '2026-03-09T00:00:00.000Z',
-      updatedAt: '2026-03-09T00:00:00.000Z',
+      id: 100,
+      userAId: 1,
+      userBId: 2,
+      status: "PENDING",
+      createdAt: "2026-03-09T00:00:00.000Z",
+      updatedAt: "2026-03-09T00:00:00.000Z",
     });
 
     renderUsersPage();
     const user = userEvent.setup();
 
     await waitFor(() => {
-      expect(screen.getByText('Alex Torres')).toBeInTheDocument();
+      expect(screen.getByText("Alex Torres")).toBeInTheDocument();
     });
 
     // Click the first "Add Friend" button (Alex)
-    const addButtons = screen.getAllByRole('button', { name: /add friend/i });
+    const addButtons = screen.getAllByRole("button", { name: /add friend/i });
     await user.click(addButtons[0]);
 
     // Verify the API was called with the correct userId
-    expect(mockSendFriendRequest).toHaveBeenCalledWith('fake-token-123', 2);
+    expect(mockSendFriendRequest).toHaveBeenCalledWith("fake-token-123", 2);
   });
 
   it('calls deleteFriendship when "Pending -- Cancel" is clicked', async () => {
@@ -233,9 +238,9 @@ describe('UsersPage', () => {
         id: 77,
         userAId: 1,
         userBId: 2,
-        status: 'PENDING',
-        createdAt: '2026-03-09T00:00:00.000Z',
-        updatedAt: '2026-03-09T00:00:00.000Z',
+        status: "PENDING",
+        createdAt: "2026-03-09T00:00:00.000Z",
+        updatedAt: "2026-03-09T00:00:00.000Z",
       },
     ]);
     mockDeleteFriendship.mockResolvedValue(undefined);
@@ -249,52 +254,54 @@ describe('UsersPage', () => {
 
     await user.click(screen.getByText(/pending -- cancel/i));
 
-    expect(mockDeleteFriendship).toHaveBeenCalledWith('fake-token-123', 77);
+    expect(mockDeleteFriendship).toHaveBeenCalledWith("fake-token-123", 77);
   });
 
   it('displays "No users match your search." when search returns empty', async () => {
     // After initial load, simulate search returning empty
     mockFetchUserDirectory
-      .mockResolvedValueOnce(sampleUsers)  // initial load
-      .mockResolvedValueOnce([]);           // after search
+      .mockResolvedValueOnce(sampleUsers) // initial load
+      .mockResolvedValueOnce([]); // after search
 
     renderUsersPage();
 
     await waitFor(() => {
-      expect(screen.getByText('Alex Torres')).toBeInTheDocument();
+      expect(screen.getByText("Alex Torres")).toBeInTheDocument();
     });
 
     const user = userEvent.setup();
-    const searchInput = screen.getByRole('searchbox');
+    const searchInput = screen.getByRole("searchbox");
 
     // Type a search that returns no results
-    await user.type(searchInput, 'zzzzz');
+    await user.type(searchInput, "zzzzz");
 
     // Wait for debounce + re-render
     await waitFor(() => {
-      expect(screen.getByText(/no users match your search/i)).toBeInTheDocument();
+      expect(
+        screen.getByText(/no users match your search/i),
+      ).toBeInTheDocument();
     });
   });
 
-  it('shows error message when fetch fails', async () => {
-    mockFetchUserDirectory.mockRejectedValue(new Error('Network error'));
+  it("shows error message when fetch fails", async () => {
+    mockFetchUserDirectory.mockRejectedValue(new Error("Network error"));
 
     renderUsersPage();
 
     await waitFor(() => {
-      expect(screen.getByRole('alert')).toHaveTextContent('Network error');
+      expect(screen.getByRole("alert")).toHaveTextContent("Network error");
     });
   });
 
-  it('links each user name to their profile page', async () => {
+  it("links each user name to their profile page", async () => {
     renderUsersPage();
 
     await waitFor(() => {
-      expect(screen.getByText('Alex Torres')).toBeInTheDocument();
+      expect(screen.getByText("Alex Torres")).toBeInTheDocument();
     });
 
     // Alex's name should link to /u/intern-alex
-    const alexLink = screen.getByRole('link', { name: 'Alex Torres' });
-    expect(alexLink).toHaveAttribute('href', '/u/intern-alex');
+    const alexLink = screen.getByRole("link", { name: "Alex Torres" });
+    expect(alexLink).toHaveAttribute("href", "/u/intern-alex");
   });
 });

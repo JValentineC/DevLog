@@ -34,37 +34,38 @@ Open `server/routes/users.ts`. Add a new `GET /` route **before** the existing `
 
 ```ts
 // server/routes/users.ts
-import { Router } from 'express'
-import type { ResultSetHeader, RowDataPacket } from 'mysql2/promise'
-import { pool, type UserRow } from '../lib/db.js'
-import { requireAuth } from '../middleware/auth.js'
+import { Router } from "express";
+import type { ResultSetHeader, RowDataPacket } from "mysql2/promise";
+import { pool, type UserRow } from "../lib/db.js";
+import { requireAuth } from "../middleware/auth.js";
 
-const router = Router()
+const router = Router();
 
 // GET /api/users — directory listing with optional search (auth required)
-router.get('/', requireAuth, async (req, res) => {
-  const search = typeof req.query.search === 'string' ? req.query.search.trim() : ''
+router.get("/", requireAuth, async (req, res) => {
+  const search =
+    typeof req.query.search === "string" ? req.query.search.trim() : "";
 
   let sql = `
     SELECT u.id, u.username, u.handle, u.displayName, u.bio, u.avatarUrl, u.createdAt,
            COUNT(e.id) AS entryCount
     FROM \`User\` u
-    LEFT JOIN \`Entry\` e ON e.userId = u.id`
+    LEFT JOIN \`Entry\` e ON e.userId = u.id`;
 
-  const params: string[] = []
+  const params: string[] = [];
 
   if (search) {
     sql += `
-    WHERE u.username LIKE ? OR u.handle LIKE ? OR u.displayName LIKE ?`
-    const like = `%${search}%`
-    params.push(like, like, like)
+    WHERE u.username LIKE ? OR u.handle LIKE ? OR u.displayName LIKE ?`;
+    const like = `%${search}%`;
+    params.push(like, like, like);
   }
 
   sql += `
     GROUP BY u.id
-    ORDER BY u.username ASC`
+    ORDER BY u.username ASC`;
 
-  const [rows] = await pool.execute<(UserRow & RowDataPacket)[]>(sql, params)
+  const [rows] = await pool.execute<(UserRow & RowDataPacket)[]>(sql, params);
 
   res.json(
     rows.map((r: any) => ({
@@ -76,14 +77,15 @@ router.get('/', requireAuth, async (req, res) => {
       avatarUrl: r.avatarUrl,
       createdAt: r.createdAt,
       entryCount: Number(r.entryCount),
-    }))
-  )
-})
+    })),
+  );
+});
 
 // ... existing /:handle and /me/profile routes remain below
 ```
 
 Key points:
+
 - Uses `LEFT JOIN Entry` to get each user's entry count
 - `GROUP BY u.id` is required because of the aggregate `COUNT`
 - Three `LIKE` clauses let you search by username, handle, or display name
@@ -118,7 +120,9 @@ export async function fetchUserDirectory(
     headers: { Authorization: `Bearer ${token}` },
   });
   if (!res.ok) {
-    const body = await res.json().catch(() => ({ error: "Failed to load users" }));
+    const body = await res
+      .json()
+      .catch(() => ({ error: "Failed to load users" }));
     throw new Error(body.error ?? `Fetch users failed: ${res.status}`);
   }
   return res.json();
@@ -262,31 +266,31 @@ function UsersPage() {
 The friend action handlers:
 
 ```tsx
-  async function handleAddFriend(targetUserId: number) {
-    if (!token) return;
-    setActionLoading(targetUserId);
-    try {
-      await sendFriendRequest(token, targetUserId);
-      await loadData(debouncedSearch || undefined);
-    } catch (err: unknown) {
-      setError(err instanceof Error ? err.message : "Failed to send request");
-    } finally {
-      setActionLoading(null);
-    }
+async function handleAddFriend(targetUserId: number) {
+  if (!token) return;
+  setActionLoading(targetUserId);
+  try {
+    await sendFriendRequest(token, targetUserId);
+    await loadData(debouncedSearch || undefined);
+  } catch (err: unknown) {
+    setError(err instanceof Error ? err.message : "Failed to send request");
+  } finally {
+    setActionLoading(null);
   }
+}
 
-  async function handleRemoveFriend(friendshipId: number) {
-    if (!token) return;
-    setActionLoading(friendshipId);
-    try {
-      await deleteFriendship(token, friendshipId);
-      await loadData(debouncedSearch || undefined);
-    } catch (err: unknown) {
-      setError(err instanceof Error ? err.message : "Failed to remove");
-    } finally {
-      setActionLoading(null);
-    }
+async function handleRemoveFriend(friendshipId: number) {
+  if (!token) return;
+  setActionLoading(friendshipId);
+  try {
+    await deleteFriendship(token, friendshipId);
+    await loadData(debouncedSearch || undefined);
+  } catch (err: unknown) {
+    setError(err instanceof Error ? err.message : "Failed to remove");
+  } finally {
+    setActionLoading(null);
   }
+}
 ```
 
 And the JSX with the card grid, search input, and conditional friend buttons:
@@ -424,13 +428,13 @@ export default UsersPage;
 
 ## Do / Don't
 
-| Do | Don't |
-|---|---|
-| Use parameterized queries (`?`) for search terms | Concatenate user input into SQL strings |
-| Debounce the search so you don't flood the API | Fire a new fetch on every keystroke |
-| Show a "You" badge on your own card | Show friend buttons for yourself |
-| Disable buttons while an action is in progress | Let users double-click and send duplicate requests |
-| Use `aria-label` on the search input | Rely on placeholder text as the only label |
+| Do                                               | Don't                                              |
+| ------------------------------------------------ | -------------------------------------------------- |
+| Use parameterized queries (`?`) for search terms | Concatenate user input into SQL strings            |
+| Debounce the search so you don't flood the API   | Fire a new fetch on every keystroke                |
+| Show a "You" badge on your own card              | Show friend buttons for yourself                   |
+| Disable buttons while an action is in progress   | Let users double-click and send duplicate requests |
+| Use `aria-label` on the search input             | Rely on placeholder text as the only label         |
 
 ## Check Your Work
 

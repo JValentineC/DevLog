@@ -30,8 +30,8 @@ function getFriendInfo(
 ): { status: string; friendshipId?: number } {
   const f = friendships.find(
     (fr) =>
-      (fr.userAId === Math.min(myId, userId) &&
-        fr.userBId === Math.max(myId, userId)),
+      fr.userAId === Math.min(myId, userId) &&
+      fr.userBId === Math.max(myId, userId),
   );
   if (!f) return { status: "NONE" };
   return { status: f.status, friendshipId: f.id };
@@ -132,7 +132,11 @@ function UsersPage() {
         )}
 
         {!loading && !error && users.length === 0 && (
-          <p>{search ? "No users match your search." : "No registered users yet."}</p>
+          <p>
+            {search
+              ? "No users match your search."
+              : "No registered users yet."}
+          </p>
         )}
 
         {!loading && users.length > 0 && (

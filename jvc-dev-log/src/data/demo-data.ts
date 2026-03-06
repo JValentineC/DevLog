@@ -378,9 +378,7 @@ export const DemoData = {
     };
   },
 
-  async fetchMe(
-    token: string,
-  ): Promise<{
+  async fetchMe(token: string): Promise<{
     id: number;
     username: string;
     email: string;
@@ -411,9 +409,7 @@ export const DemoData = {
 
   /* ---------- profiles ------------------------------------------- */
 
-  async fetchProfile(
-    handle: string,
-  ): Promise<{
+  async fetchProfile(handle: string): Promise<{
     id: number;
     username: string;
     handle: string;
@@ -492,9 +488,7 @@ export const DemoData = {
     }));
   },
 
-  async fetchUserDirectory(
-    search?: string,
-  ): Promise<
+  async fetchUserDirectory(search?: string): Promise<
     {
       id: number;
       username: string;
@@ -633,9 +627,7 @@ export const DemoData = {
       );
   },
 
-  async fetchFriendshipStatus(
-    otherUserId: number,
-  ): Promise<{
+  async fetchFriendshipStatus(otherUserId: number): Promise<{
     status: string;
     id?: number;
     userAId?: number;

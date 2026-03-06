@@ -35,7 +35,9 @@ export async function fetchUserDirectory(
     headers: { Authorization: `Bearer ${token}` },
   });
   if (!res.ok) {
-    const body = await res.json().catch(() => ({ error: "Failed to load users" }));
+    const body = await res
+      .json()
+      .catch(() => ({ error: "Failed to load users" }));
     throw new Error(body.error ?? `Fetch users failed: ${res.status}`);
   }
   return res.json();
@@ -54,7 +56,11 @@ export async function fetchProfile(handle: string): Promise<UserProfile> {
 
 export async function updateProfile(
   token: string,
-  data: { displayName?: string | null; bio?: string | null; avatarUrl?: string | null },
+  data: {
+    displayName?: string | null;
+    bio?: string | null;
+    avatarUrl?: string | null;
+  },
 ): Promise<UserProfile & { email: string }> {
   if (DEMO) return DemoData.updateProfile(data);
 

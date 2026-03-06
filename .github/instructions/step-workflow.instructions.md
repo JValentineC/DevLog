@@ -60,7 +60,36 @@ Every step gets a corresponding test folder at `tests/NN-step-name/`.
    - Heavily commented test code to walk interns through each concept
 4. **Test scripts should include educational comments** explaining testing patterns, assertions, and why each test matters.
 
-## Phase 5 — Deploy GitHub Pages
+## Phase 5 — Create Learning Design
+
+Every step gets a corresponding learning design document at `Docs/LearningDesigns/step_name` (snake_case, no number prefix — e.g., `basic_routing_one_link` for Step 04).
+
+Use the template at `Docs/LEARNING_DESIGN_TEMPLATE.md` and fill in every section:
+
+1. **Set Intention** — Session purpose, 2–4 learning objectives, explicit narrative of learning goals.
+2. **Start With Why** — Explicit narrative connecting the step's skills to learners' current/future work.
+3. **Emotional or Experiential Hook** — Learner knowledge to integrate and a story/experience to reference.
+4. **Key/Core Content** — Up to 3 core concepts that need to be explained or modeled.
+5. **Application** — Guided, partner, and/or independent practice activities with explicit narration.
+6. **Assessment and/or Debrief** — Performance task with checklist, facilitated dialogue questions with **instructor-ready answers**, and/or written reflection.
+7. **How Will the Learner Know How They Did?** — Clear success criteria.
+8. **Retrieval Practice** — A follow-up task within one week (often tied to the next step).
+9. **Extension and Support** — At least 3 extension opportunities and at least 2 support opportunities (learner chooses).
+
+### Style & Content Rules
+
+- **Learning objectives** must be measurable ("Learners will be able to...").
+- **Facilitated dialogue questions** must include full instructor-ready answers — detailed enough that any instructor can lead the discussion without extra preparation.
+- **Checklist items** in the Assessment section should align with the step README's "Check Your Work" section.
+- **Tone**: Professional but accessible — written for an instructor audience at i.c. stars.
+- **No emojis or Unicode symbols** — plain text only.
+- The file is plain text (not Markdown) following the structure in the template.
+
+### Reference
+
+See `Docs/LearningDesigns/basic_routing_one_link` for a completed example (Step 04).
+
+## Phase 6 — Deploy GitHub Pages
 
 ```powershell
 cd C:\Users\JonathanRamirez\Documents\Applications\DevLog\jvc-dev-log
@@ -70,11 +99,12 @@ npm run deploy
 This builds with `.env.production` (no `VITE_API_URL` → demo mode) and publishes to GitHub Pages.
 
 > **NFSN deploy** is handled manually by the user:
+>
 > ```powershell
 > & "C:\Program Files\Git\bin\bash.exe" deploy-nfsn.sh
 > ```
 
-## Phase 6 — Git Commit & Push
+## Phase 7 — Git Commit & Push
 
 ```powershell
 cd C:\Users\JonathanRamirez\Documents\Applications\DevLog

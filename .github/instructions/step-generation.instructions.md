@@ -29,35 +29,44 @@ Every step README follows this exact outline:
 # Step NN — Title
 
 ## Goal
+
 One sentence describing what this step accomplishes.
 
 ## What You'll Practice
+
 - Bullet list of 4–6 concepts/skills practiced
 
 ## Prerequisites
+
 - Previous step completed
 - Any additional tools or knowledge needed
 
 ## Step-by-Step Instructions
 
 ### 1. Copy the previous step
+
 (instructions to copy and rename)
 
 ### 2–N. Implementation steps
+
 (one section per logical change, with code blocks showing the file path and content)
 
 ## Helpful Hints
+
 - 2–4 tips relevant to this step
 
 ## Do / Don't
-| Do | Don't |
-|---|---|
-| ... | ... |
+
+| Do  | Don't |
+| --- | ----- |
+| ... | ...   |
 
 ## Check Your Work
+
 - Numbered verification steps the learner can follow
 
 ## Stretch
+
 - 1–2 optional challenges to go further
 ```
 
@@ -89,7 +98,11 @@ Every step **must** add a new entry to `jvc-dev-log/public/data/dummy-logs.json`
 - **Tags**: 3–4 lowercase kebab-case keywords covering the step's main concepts.
 - **Dates**: Increment one day from the previous entry, keep `T09:00:00.000Z`.
 
-## 6. Commit Convention
+## 6. Create Learning Design
+
+Every step gets a learning design document at `Docs/LearningDesigns/step_name` (snake_case, no number prefix). Use the template at `Docs/LEARNING_DESIGN_TEMPLATE.md` and the completed example at `Docs/LearningDesigns/basic_routing_one_link` as a reference. See `step-workflow.instructions.md` Phase 5 for full requirements.
+
+## 7. Commit Convention
 
 Each step gets one commit: `feat(step-NN): short description`
 
